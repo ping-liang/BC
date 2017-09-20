@@ -1,0 +1,207 @@
+<%@ Control %>
+
+<style>
+
+  .row{
+    height:10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+</style>
+
+<script type="text/javascript">
+  function BackToSearch(sender, args) {
+    $findByControlId("chkBackToSearch").set_checked(true);
+  }
+
+  function HideUnhide(sender, args) {
+    //alert("A");
+  }
+
+</script>
+
+<sq8:Form runat="server" ID="Form1" DataSourceID="Form1DataSource" DataKeyNames="fldId" RenderMode="PlaceHolder"><ContentTemplate>
+  <div class="sqf-layout-fluid" style="width:100%">
+    <div class="sqf-layout-row sqf-section">
+      <div class="sqf-row">
+        <div class="sqf-col-xs-12 sqf-col-md-6 sqf-control-group-v"><h2><sq8:Text runat="server" Text="Add New Customer"></sq8:Text></h2></div>
+        <div class="sqf-col-xs-12 sqf-col-md-6 sqf-control-group-v"><div style="text-align: right"><img onclick="HideUnhide" style="float: right;" src="https://image.freepik.com/free-icon/down-arrow-sketch_318-75442.jpg" width="25px" /></div></div>
+      </div>
+      <div class="sqf-section-body sqf-container">
+        <div class="sqf-row">
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+              <sq8:Label runat="server" Text="Customer Type" ID="Label1"></sq8:Label><br />
+              <sq8:Label runat="server" Text="*" ID="Label14" ForeColor="#FB836F"></sq8:Label>
+            </div>
+						<sq8:DataSource runat="server" ID="rbAccountTypeDataSource" 
+							QueryName="gcmsLOOKUPS"  Where="LOOKUP_TYPE == @LOOKUP_TYPE">
+              <WhereParameters>
+									<sq:ExpressionParameter Expression="&quot;CUSTOMER_TYPE&quot;" Name="LOOKUP_TYPE"></sq:ExpressionParameter>
+							</WhereParameters>
+						</sq8:DataSource>
+						<asp:RadioButtonList runat="server" ID="rbAccountType" DataSourceID="rbAccountTypeDataSource"   DataTextField="DESCRIPTION" DataValueField="LOOKUP_CODE" RepeatDirection="Horizontal"></asp:RadioButtonList>
+						<sq:BindableControl runat="server" TargetControlID="rbAccountType" DataField="rbAccountType"></sq:BindableControl>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="rbAccountType" ErrorMessage="Account Type is required">Account Type is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="rbAccountType" DataField="rbAccountType"></sq:BindableControl>          						
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+              <sq8:Label runat="server" Text="First Name" />
+              <sq8:Label runat="server" Text="*" ID="Label15" ForeColor="#FB836F"></sq8:Label>
+            </div>
+            <sq8:TextBox runat="server" ID="txtFirstName"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtFirstName" ErrorMessage="First Name is required">First Name is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtFirstName" DataField="txtFirstName"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Last Name" ID="Label2"></sq8:Label>
+            <sq8:Label runat="server" Text="*" ID="Label23" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtLastName"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtLastName" ErrorMessage="Last Name is required">Last Name is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtLastName" DataField="txtLastName"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Mailing Street" ID="Label5"></sq8:Label>
+            <sq8:Label runat="server" Text="*" ID="Label16" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtStreet"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtStreet" ErrorMessage="Mailing Street is required">Mailing Street is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtStreet" DataField="txtStreet"></sq:BindableControl>
+          </div>
+        </div>
+        <div class="sqf-row">
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Mailing City" ID="Label6"></sq8:Label>
+            <sq8:Label runat="server" Text="*" ID="Label17" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtCity"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtCity" ErrorMessage="Mailing City is required">Mailing City is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtCity" DataField="txtCity"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <sq8:Label runat="server" Text="Mailing County" ID="Label3"></sq8:Label>
+            <sq8:TextBox runat="server" ID="txtMailingCounty" Width="100%"></sq8:TextBox>
+            <sq:BindableControl runat="server" TargetControlID="txtMailingCounty" DataField="txtMailingCounty"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Mailing State" />
+            <sq8:Label runat="server" Text="*" ID="Label18" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:DataSource runat="server" ID="DataSource1" QueryName="gcmsLOOKUPS" Where="LOOKUP_TYPE == @LOOKUP_TYPE" OrderBy="DESCRIPTION"><WhereParameters>
+<sq:ExpressionParameter Expression="&quot;STATE&quot;" Name="LOOKUP_TYPE"></sq:ExpressionParameter>
+</WhereParameters>
+</sq8:DataSource>
+            <sq8:ComboBox runat="server" ID="cmbState" DataSourceID="DataSource1" DataValueField="LOOKUP_CODE" DataTextField="DESCRIPTION" ItemsPerRequest="20" ShowMoreResultsBox="True" EnableAutomaticLoadOnDemand="True" Filter="Contains" Width="100%"></sq8:ComboBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="cmbState" ErrorMessage="Mailing State is required">Mailing State is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="cmbState" DataField="cmbState"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Mailing Zip" />
+            <sq8:Label runat="server" Text="*" ID="Label19" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtZip"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtZip" ErrorMessage="Mailing Zip is required">Mailing Zip is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtZip" DataField="txtZip"></sq:BindableControl>
+          </div>
+        </div>
+        <div class="sqf-row">
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <sq8:Label runat="server" Text="Home Phone" />
+            <sq8:TextBox runat="server" ID="txtHomePhone"     Width="100%"></sq8:TextBox>
+            <sq:BindableControl runat="server" TargetControlID="txtHomePhone" DataField="txtHomePhone"></sq:BindableControl>
+          </div><div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Work Phone" />
+          <sq8:TextBox runat="server" ID="txtWorkPhone"     Width="100%"></sq8:TextBox>
+          <sq:BindableControl runat="server" TargetControlID="txtWorkPhone" DataField="txtWorkPhone"></sq:BindableControl>
+          </div><div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">														
+          <sq8:Label runat="server" Text="Mobile Phone" ID="Label4"></sq8:Label>
+          <sq8:TextBox runat="server" ID="txtMobilePhone"     Width="100%"></sq8:TextBox>
+          <sq:BindableControl runat="server" TargetControlID="txtMobilePhone" DataField="txtMobilePhone"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Email" />
+            <sq8:Label runat="server" Text="*" ID="Label20" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtEmail"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtEmail" ErrorMessage="Email is required">Email is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtEmail" DataField="txtEmail"></sq:BindableControl>
+          </div>
+        </div>
+        <div class="sqf-row">
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <sq8:Label runat="server" Text="Best time to Contact" ID="Label7"></sq8:Label>
+            <sq8:TextBox runat="server" ID="txtBestTimeToContact"     Width="100%"></sq8:TextBox>
+            <sq:BindableControl runat="server" TargetControlID="txtBestTimeToContact" DataField="txtBestTimeToContact"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Contact First Name" ID="Label8"></sq8:Label>
+            <sq8:Label runat="server" Text="*" ID="Label21" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtContactFirstName"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtContactFirstName" ErrorMessage="Contact First Name is required">Contact First Name is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtContactFirstName" DataField="txtContactFirstName"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <div>
+            <sq8:Label runat="server" Text="Contact Last Name" ID="Label9"></sq8:Label>
+            <sq8:Label runat="server" Text="*" ID="Label22" ForeColor="#FB836F"></sq8:Label>
+              </div>
+            <sq8:TextBox runat="server" ID="txtContactLastName"     Width="100%"></sq8:TextBox>
+            <sq8:RequiredFieldValidator runat="server"  ControlToValidate="txtContactLastName" ErrorMessage="Contact Last Name is required">Contact Last Name is required</sq8:RequiredFieldValidator>
+            <sq:BindableControl runat="server" TargetControlID="txtContactLastName" DataField="txtContactLastName"></sq:BindableControl>
+          </div>
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <sq8:Label runat="server" Text="Contact Type" ID="Label10"></sq8:Label>
+            <sq8:DataSource runat="server" ID="cmbContactTypeDataSource" QueryName="gcmsLOOKUPS"  OrderBy="DESCRIPTION"></sq8:DataSource>
+            <sq8:ComboBox runat="server" ID="cmbContactType" DataSourceID="cmbContactTypeDataSource"    
+                          DataTextField="LOOKUP_CODE" DataValueField="DESCRIPTION" AutoInsertEmptyItem="True" Width="100%"></sq8:ComboBox>
+            <sq:BindableControl runat="server" TargetControlID="cmbContactType" DataField="cmbContactType"></sq:BindableControl>
+          </div>
+        </div>
+        <div class="sqf-row">
+          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+            <sq8:Label runat="server" Text="Contact Email" ID="Label11"></sq8:Label>
+            <sq8:TextBox runat="server" ID="txtContactEmail"     Width="100%"></sq8:TextBox>
+            <sq:BindableControl runat="server" TargetControlID="txtContactEmail" DataField="txtContactEmail"></sq:BindableControl>
+          </div><div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Contact Home Phone number" ID="Label12"></sq8:Label>
+          <sq8:TextBox runat="server" ID="txtContactHomePhoneNumber"     Width="100%"></sq8:TextBox>
+          <sq:BindableControl runat="server" TargetControlID="txtContactHomePhoneNumber" DataField="txtContactHomePhoneNumber"></sq:BindableControl>
+          </div><div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Contact Mobile Phone number" ID="Label13"></sq8:Label>
+          <sq8:TextBox runat="server" ID="txtMobilePhoneNumber"     Width="100%"></sq8:TextBox>
+          <sq:BindableControl runat="server" TargetControlID="txtMobilePhoneNumber" DataField="txtMobilePhoneNumber"></sq:BindableControl>
+          </div><div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+
+          </div>
+        </div>
+        <div class="sqf-row">
+          <div class="sqf-col-xs-12 sqf-col-md-4 sqf-control-group-v">
+            <div style="display:none;"><sq8:CheckBox runat="server" Text="Checkbox" ID="chkBackToSearch"></sq8:CheckBox></div>
+            <sq:BindableControl runat="server" TargetControlID="chkBackToSearch" DataField="chkBackToSearch"></sq:BindableControl>
+          </div><div class="sqf-col-xs-12 sqf-col-md-4 sqf-control-group-v">                      
+          <sq8:Button runat="server" Text="Back To Search" CommandName="SaveAll" CommandArgument="1" SingleClick="True" SingleClickText="Going Back To Search..." OnClientClicking="BackToSearch" ValidationGroup="vgJustDraft"></sq8:Button>
+          <sq8:Button runat="server" Text="Create Customer" CommandName="SaveAll" CommandArgument="1" SingleClick="True" SingleClickText="Creating Customer..." BackColor="#FCB686" BorderColor="#FCB686"></sq8:Button>
+          </div><div class="sqf-col-xs-12 sqf-col-md-4 sqf-control-group-v">          
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+
+  
+</ContentTemplate>
+</sq8:Form>
+<sq8:DataSource runat="server" ID="Form1DataSource" QueryName="UACT_Add_Customer"></sq8:DataSource>
+<sq:BoundControl runat="server" TargetControlID="Form1"></sq:BoundControl>
