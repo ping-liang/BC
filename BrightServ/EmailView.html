@@ -1,0 +1,161 @@
+﻿<%@ Control %>
+<sq8:Form runat="server" ID="refnsEmailListenerDataModelEmailMessagesForm" DataKeyNames="fldId" DataSourceID="refnsEmailListenerDataModelEmailMessagesDataSource" ReadOnly="true" RenderMode="PlaceHolder"><ContentTemplate>
+  <div class="sqf-section">
+    <div class="sqf-section-header">
+      <h2><sq8:Text runat="server">EmailMessages</sq8:Text></h2>
+    </div>
+
+
+
+    <div class="sqf-section-body sqf-container">
+      
+      <div class="sqf-row">
+        <div class="sqf-col-xs-4 sqf-control-group-v">
+          <sq8:Label runat="server" Text="CC" />
+          <sq8:Label runat="server" ID="CC" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="CC" DataField="CC"></sq:BindableControl>
+        </div>
+        <div class="sqf-col-xs-4 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Bcc" />
+          <sq8:Label runat="server" ID="Bcc" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="Bcc" DataField="Bcc"></sq:BindableControl>
+        </div>
+        <div class="sqf-col-xs-4 sqf-control-group-v">
+          <sq8:Label runat="server" Text="In Reply To" />
+          <sq8:Label runat="server" ID="InReplyTo" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="InReplyTo" DataField="InReplyTo"></sq:BindableControl>
+        </div>
+      </div>
+      <div class="sqf-row">
+        <div class="sqf-col-xs-4 sqf-control-group-v">
+          <sq8:Label runat="server" Text="From" />
+          <sq8:Label runat="server" ID="From" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="From" DataField="From"></sq:BindableControl>
+        </div>
+        <div class="sqf-col-xs-4 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Priority" />
+          <sq8:Label runat="server" ID="Priority" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="Priority" DataField="Priority"></sq:BindableControl>
+        </div>
+        <div class="sqf-col-xs-4 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Received Date" />
+          <sq8:Label runat="server" ID="ReceivedDate" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="ReceivedDate" DataField="ReceivedDate"></sq:BindableControl>
+        </div>
+      </div>
+
+      <div class="sqf-row">
+        <div class="sqf-col-xs-12 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Subject" />
+          <sq8:Label runat="server" ID="Subject" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="Subject" DataField="Subject"></sq:BindableControl>
+        </div>
+      </div>
+      <div class="sqf-row">
+        <div class="sqf-col-xs-12 sqf-control-group-v">
+          <sq8:Label runat="server" Text="Body Html" />
+          <sq8:Label runat="server" ID="BodyHtml" CssClass="sqf-text-readonly"></sq8:Label>
+          <sq:BindableControl runat="server" TargetControlID="BodyHtml" DataField="BodyHtml"></sq:BindableControl>
+        </div>
+      </div>
+
+      
+
+      <div class="sqf-row">
+
+      </div>
+      <div class="sqf-row">
+        <div class="sqf-col-xs-12 sqf-control-group-v">
+          <sq8:Grid runat="server" ID="refnsEmailListenerDataModelEmailMessageAttachmentsGridView" DataSourceID="refnsEmailListenerDataModelEmailMessageAttachmentsDataSource" 
+                    AutoGenerateColumns="False"  AllowAutomaticDeletes="True" AllowAutomaticInserts="True" AllowAutomaticUpdates="True"    GroupPanelPosition="Top">
+            <GroupingSettings ExpandAllTooltip="" CollapseAllTooltip=""></GroupingSettings>
+
+            <HierarchySettings ExpandAllTooltip="" CollapseAllTooltip=""></HierarchySettings>
+
+            <MasterTableView CommandItemDisplay="None" DataKeyNames="fldId" DataSourceID="refnsEmailListenerDataModelEmailMessageAttachmentsDataSource">
+              <CommandItemSettings PrevFrozenColumnText=""></CommandItemSettings>
+
+              <RowIndicatorColumn FilterControlAltText=""></RowIndicatorColumn>
+
+              <ExpandCollapseColumn FilterControlAltText=""></ExpandCollapseColumn>
+              <Columns>
+                <sq8:GridTemplateColumn DataField="MessageId" HeaderText="Message Id" SortExpression="MessageId" Display="False" UniqueName="MessageId" FilterControlAltText=""><EditItemTemplate>
+                  <sq8:TextBox runat="server" ID="MessageId"    ></sq8:TextBox>
+                  <asp:RequiredFieldValidator runat="server" Display="Static" ErrorMessage="Message Id must be filled" ID="rfvMessageId" ControlToValidate="MessageId"></asp:RequiredFieldValidator>
+                  <sq:BindableControl runat="server" TargetControlID="MessageId" DataField="MessageId"></sq:BindableControl>
+
+                  </EditItemTemplate>
+                  <ItemTemplate>
+                    <asp:Literal runat="server" ID="MessageId" Mode="Encode"></asp:Literal>
+                    <sq:BindableControl runat="server" TargetControlID="MessageId" DataField="MessageId"></sq:BindableControl>
+
+                  </ItemTemplate>
+                </sq8:GridTemplateColumn>
+                <sq8:GridTemplateColumn DataField="AttachmentType" HeaderText="Attachment Type" SortExpression="AttachmentType" Display="False" UniqueName="AttachmentType" DataType="System.Byte" FilterControlAltText=""><EditItemTemplate>
+                  <sq8:NumericTextBox runat="server" ID="AttachmentType"  
+                                      DataType="System.Byte"></sq8:NumericTextBox>
+                  <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="Attachment Type must be filled" ID="rfvAttachmentType" ControlToValidate="AttachmentType"></asp:RequiredFieldValidator>
+                  <sq:BindableControl runat="server" TargetControlID="AttachmentType" DataField="AttachmentType"></sq:BindableControl>
+
+                  </EditItemTemplate>
+                  <ItemTemplate>
+                    <asp:Literal runat="server" ID="AttachmentType" Mode="Encode"></asp:Literal>
+                    <sq:BindableControl runat="server" TargetControlID="AttachmentType" DataField="AttachmentType"></sq:BindableControl>
+
+                  </ItemTemplate>
+                </sq8:GridTemplateColumn>
+                <sq8:GridTemplateColumn DataField="Attachment" HeaderText="Attachment" SortExpression="AttachmentName" UniqueName="Attachment" FilterControlAltText=""><EditItemTemplate>
+                  <sq8:FileUpload runat="server" ID="Attachment"></sq8:FileUpload>
+                  <sq:BindableControl runat="server" TargetControlID="Attachment" DataField="Attachment"></sq:BindableControl>
+
+
+                  </EditItemTemplate>
+                  <ItemTemplate>
+                    <asp:LinkButton runat="server" ID="Attachment" CommandName="DownloadAttachment" CausesValidation="false"></asp:LinkButton>
+                    <sq:BindableControl runat="server" TargetControlID="Attachment" DataField="Attachment"></sq:BindableControl>
+
+                  </ItemTemplate>
+                </sq8:GridTemplateColumn>
+              </Columns>
+
+              <EditFormSettings>
+                <EditColumn FilterControlAltText=""></EditColumn>
+              </EditFormSettings>
+
+              <PagerStyle GoToPageButtonToolTip=""></PagerStyle>
+
+              <AutoGeneratedEditColumnSettings ButtonType="ImageButton"></AutoGeneratedEditColumnSettings>
+
+              <AutoGeneratedDeleteColumnSettings ButtonType="ImageButton"></AutoGeneratedDeleteColumnSettings>
+            </MasterTableView>
+
+            <PagerStyle GoToPageButtonToolTip=""></PagerStyle>
+
+            <FilterMenu EnableImageSprites="True"></FilterMenu>
+          </sq8:Grid>
+
+          <sq8:DataSource runat="server" ID="refnsEmailListenerDataModelEmailMessageAttachmentsDataSource" 
+                          QueryName="ref:nsEmailListenerDataModel/EmailMessageAttachments"    Where="fldIWfId == @fldIWfId"><WhereParameters>
+            <sq:ExpressionParameter Expression="wf.MasterWorkflowInstanceId" Name="fldIWfId"></sq:ExpressionParameter>
+            </WhereParameters>
+          </sq8:DataSource>
+          <sq:BoundControl runat="server" TargetControlID="refnsEmailListenerDataModelEmailMessageAttachmentsGridView" ></sq:BoundControl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+  </ContentTemplate>
+</sq8:Form>
+
+<sq8:DataSource runat="server" ID="refnsEmailListenerDataModelEmailMessagesDataSource" 
+                QueryName="ref:nsEmailListenerDataModel/EmailMessages" Where="fldIWfId == @fldIWfId"><WhereParameters>
+  <sq:ExpressionParameter Expression="wf.MasterWorkflowInstanceId" Name="fldIWfId"></sq:ExpressionParameter>
+  </WhereParameters>
+</sq8:DataSource>
+<sq:BoundControl runat="server" TargetControlID="refnsEmailListenerDataModelEmailMessagesForm"></sq:BoundControl>

@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Find Customer Search", "Find Customer Search", "{B857D107-F89B-48DA-A7EF-798B574591D3}"
 	ProjectSection(SolutionItems) = preProject
 		CustomerSearchView.html = CustomerSearchView.html
+		EmailView.html = EmailView.html
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{EA677149-C2D4-486E-9EEE-2D5A483396A9}"
