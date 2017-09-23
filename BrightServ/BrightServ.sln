@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Create New Customer", "Create New Customer", "{61AD084A-EA08-4761-9C9D-6BCED7975A7F}"
 	ProjectSection(SolutionItems) = preProject
 		AddNewCustumer-DefaultView.txt = AddNewCustumer-DefaultView.txt
-		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Find Customer Search", "Find Customer Search", "{B857D107-F89B-48DA-A7EF-798B574591D3}"
@@ -15,14 +14,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Find Customer Search", "Fin
 		EmailView.html = EmailView.html
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{EA677149-C2D4-486E-9EEE-2D5A483396A9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Code and Tips", "Sample Code and Tips", "{4033C4B0-715B-4A9C-B880-610520391ADC}"
+	ProjectSection(SolutionItems) = preProject
+		Independence_Attachments_grid_radwindow_sample.html = Independence_Attachments_grid_radwindow_sample.html
+		..\..\..\..\Documents\Sequence Training\Sample Code and Tips\Tips.docx = ..\..\..\..\Documents\Sequence Training\Sample Code and Tips\Tips.docx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{F926A5E1-5390-40FC-9393-BC2095C83CD9}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B857D107-F89B-48DA-A7EF-798B574591D3} = {61AD084A-EA08-4761-9C9D-6BCED7975A7F}
-		{EA677149-C2D4-486E-9EEE-2D5A483396A9} = {61AD084A-EA08-4761-9C9D-6BCED7975A7F}
 	EndGlobalSection
 EndGlobal
