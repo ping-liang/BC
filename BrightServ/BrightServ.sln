@@ -22,6 +22,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Code and Tips", "Sam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{F926A5E1-5390-40FC-9393-BC2095C83CD9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configs", "Configs", "{2A6F8880-F3FA-4ABE-B63C-E9AF60855DAB}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Documents\My Archive\BrightClaim\BrightServ\AzureSharedResources_DEV_OrigBackup\Shared Resources\Components\WorkflowExplorer\Config\WorkflowExplorer.config = ..\..\..\..\Documents\My Archive\BrightClaim\BrightServ\AzureSharedResources_DEV_OrigBackup\Shared Resources\Components\WorkflowExplorer\Config\WorkflowExplorer.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
