@@ -20,15 +20,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Code and Tips", "Sam
 		..\..\..\..\Documents\Sequence Training\Sample Code and Tips\Tips.docx = ..\..\..\..\Documents\Sequence Training\Sample Code and Tips\Tips.docx
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{F926A5E1-5390-40FC-9393-BC2095C83CD9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom Pages", "Custom Pages", "{F926A5E1-5390-40FC-9393-BC2095C83CD9}"
+	ProjectSection(SolutionItems) = preProject
+		ClaimSearch.aspx = ClaimSearch.aspx
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configs", "Configs", "{2A6F8880-F3FA-4ABE-B63C-E9AF60855DAB}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Documents\My Archive\BrightClaim\BrightServ\AzureSharedResources_DEV_OrigBackup\Shared Resources\Components\WorkflowExplorer\Config\WorkflowExplorer.config = ..\..\..\..\Documents\My Archive\BrightClaim\BrightServ\AzureSharedResources_DEV_OrigBackup\Shared Resources\Components\WorkflowExplorer\Config\WorkflowExplorer.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portal-Command", "Portal-Command", "{3454F9D6-34A2-43FA-9E6E-A1781D28CF69}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Junks\Default.config = ..\..\..\..\..\..\Junks\Default.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3454F9D6-34A2-43FA-9E6E-A1781D28CF69} = {2A6F8880-F3FA-4ABE-B63C-E9AF60855DAB}
 	EndGlobalSection
 EndGlobal
