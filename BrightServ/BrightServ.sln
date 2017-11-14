@@ -35,6 +35,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portal-Command", "Portal-Co
 		..\..\..\..\..\..\Junks\Default.config = ..\..\..\..\..\..\Junks\Default.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{7DA0C159-2B5C-480B-B3FC-127689DCAFCD}"
+	ProjectSection(SolutionItems) = preProject
+		DefaultView.html = DefaultView.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
