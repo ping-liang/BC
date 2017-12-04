@@ -1,0 +1,585 @@
+﻿<%@ Control %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+<script>
+   //Open the last activity instance of the assignment
+  function showAssignment(fldMasterIWfId)
+  {
+   // alert(fldMasterIWfId);
+    var url = RUNTIME_URL + "&workflowInstanceId=" + fldMasterIWfId;
+  //  alert("call assignment")
+   // alert(url);
+    window.open(url);
+  }
+
+  /***** ======== Clear Button Function Section Start ======== *****/
+  function Clear(sender, args) {
+
+    var elements = document.getElementsByTagName("input");
+    for (var i = 0; i < elements.length; i++) {
+      var elemType = elements[i].type.toLowerCase();
+      if (elemType == "text" || elemType == "number" || elemType == "tel") {
+        elements[i].value = "";
+      }
+      else
+      {
+        //debugger;
+      }
+
+    }
+
+
+    $findByControlId("rdAfterHoursDispatch").clear();
+    $findByControlId("cmbAssignmentStatus").clearSelection();
+    $findByControlId("cmbAssignmentType").clearSelection();
+    $findByControlId("cmbEstimateSupport").clearSelection();
+    $findByControlId("cmbReviewer").clearSelection();
+    $findByControlId("cmbState").clearSelection();
+    $findByControlId("rdPendingEAssignment").clear();
+    $findByControlId("cmbVendor").clearSelection();
+    $findByControlId("cmbClient").clearSelection();
+    $findByControlId("cmbHistoryAssignmentStatus").clearSelection();
+    $findByControlId("cmbCSR").clearSelection();
+    $findByControlId("cmbJobStatus").clearSelection();
+    $findByControlId("dtAssignmentStartDate").clear();
+    $findByControlId("dtHistoryAssignmentDateRange").clear();
+    $findByControlId("dtAssignmentEndDate").clear();
+
+
+
+
+  }
+  /***** ======== Clear Button Function Section End ======== *****/
+
+  //Rebind the search result grid
+    if (window.parent){
+      var searchResultsGrid = getElementById("USP_BTS_Overall_Activity_ReportGridView");
+      var masterTable = searchResultsGrid.get_masterTableView();
+      masterTable.rebind();
+    }
+
+</script>
+
+<!-- ======== HTML Section Start ======== -->
+<div class="sqf-layout">
+	<div class="sqf-layout-row sqf-placeholder" style="padding-bottom:0px;margin-bottom:0px;">
+
+		<sq8:Form runat="server" ID="Search" DataSourceID="DataSource4" DataKeyNames="fldId" RenderMode="PlaceHolder">
+			<ContentTemplate>
+				<asp:UpdatePanel id="UpdatePanel1" runat="server">
+					<ContentTemplate>
+						<!-- ======== Report Filter Section Start ======== -->
+						<div class="sqf-section">
+							<div class="sqf-row">
+								<div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v" style="padding:0px;">
+									<div class="sqf-section" ID="btsOverallReportSection" style="padding:0px 13px;">
+										<!-- ======== Panel Header Section Start ======== -->
+										<div class="sqf-section-row panel-heading" data-toggle="collapse" href="#collapseBTSReport">
+											<h2 class="custom-panel-header"><sq8:Text runat="server" ID="btsReportLabel" Text="BTS Overall Activity Report"></sq8:Text></h2>
+										</div>
+										<!-- ======== Panel Header Section End ======== -->
+										<div class="sqf-section-body sqf-container panel-collapse collapse in" style="padding:4px 10px 10px;" ID="collapseBTSReport">
+
+											<div class="sqf-row">
+												<!-- ============ Assignment Status Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Assignment Status" />
+													<sq8:DataSource runat="server" ID="DataSource2" QueryName="ref:nsReports/AssignmentStatuses"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbAssignmentStatus" Width="100%" DataSourceID="DataSource2" DataTextField="Description" DataValueField="Code" EmptyMessage="--Select Assignment Status--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbAssignmentStatus" DataField="cmbAssignmentStatus"></sq:BindableControl>
+												</div>
+												<!-- ============ Assignment Status Section End ========== -->
+												<!-- ============ Client Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Client" />
+													<sq8:DataSource runat="server" ID="DataSource1" QueryName="ref:nsReports/Clients"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbClient" Width="100%" DataSourceID="DataSource1" DataTextField="Name" DataValueField="fldId" EmptyMessage="--Select Client--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbClient" DataField="cmbClient"></sq:BindableControl>
+												</div>
+												<!-- ============ Client Section End ========== -->
+												<!-- ============ Assignment Type Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Assignment Type" />
+													<sq8:DataSource runat="server" ID="DataSource3" QueryName="ref:nsReports/AssignmentTypes"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbAssignmentType" Width="100%" DataSourceID="DataSource3" DataTextField="Description" DataValueField="Code" EmptyMessage="--Select Assignment Type--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbAssignmentType" DataField="cmbAssignmentType"></sq:BindableControl>
+												</div>
+												<!-- ============ Assignment Type Section End ========== -->
+												<!-- ============ Estimate Support Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Estimate Support" />
+													<sq8:DataSource runat="server" ID="DataSource4" QueryName="ref:nsReports/EstimateSupportOptions"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbEstimateSupport" Width="100%" DataSourceID="DataSource4" DataTextField="Description" DataValueField="Code" EmptyMessage="--Select Estimate Support--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbEstimateSupport" DataField="cmbEstimateSupport"></sq:BindableControl>
+												</div>
+												<!-- ============ Estimate Support Section End ========== -->
+											</div>
+
+											<div class="sqf-row">
+												<!-- ============ After Hours Dispatch Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="After Hours Dispatch" />
+													<sq8:DataSource runat="server" ID="DataSource5" QueryName="ref:nsReports/YesNo"></sq8:DataSource>
+													<sq8:RadioButtonList runat="server" ID="rdAfterHoursDispatch" RenderMode="Classic" RepeatDirection="Horizontal" DataSourceID="DataSource5" DataTextField="Description" DataValueField="Code"></sq8:RadioButtonList>
+													<sq:BindableControl runat="server" TargetControlID="rdAfterHoursDispatch" DataField="rbAfterHoursDispatch"></sq:BindableControl>
+												</div>
+												<!-- ============ After Hours Dispatch Section End ========== -->
+												<!-- ============ Pending E-Assignment Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Pending E-Assignment" />
+													<sq8:DataSource runat="server" ID="DataSource6" QueryName="ref:nsReports/YesNo"></sq8:DataSource>
+													<sq8:RadioButtonList runat="server" ID="rdPendingEAssignment" RenderMode="Classic" RepeatDirection="Horizontal" DataSourceID="DataSource6" DataTextField="Description" DataValueField="Code"></sq8:RadioButtonList>
+													<sq:BindableControl runat="server" TargetControlID="rdPendingEAssignment" DataField="rbPendingEAssignment"></sq:BindableControl>
+												</div>
+												<!-- ============ Pending E-Assignment Section End ========== -->
+												<!-- ============ State Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="State" />
+													<sq8:DataSource runat="server" ID="DataSource7" QueryName="ref:nsReports/States"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbState" Width="100%" DataSourceID="DataSource7" DataTextField="Name" DataValueField="Code" EmptyMessage="--Select State--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbState" DataField="cmbState"></sq:BindableControl>
+												</div>
+												<!-- ============ State Section End ========== -->
+												<!-- ============ Reviewer Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Reviewer" />
+													<sq8:DataSource runat="server" ID="DataSource8" QueryName="USP_GetGroupMembersByOrgPath_Reviewers"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbReviewer" Width="100%" DataSourceID="DataSource8" DataTextField="FullName" DataValueField="fldEmployeeId" EmptyMessage="--Select Reviewer--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbReviewer" DataField="Reviewer"></sq:BindableControl>
+												</div>
+												<!-- ============ Reviewer Section End ========== -->
+											</div>
+
+											<div class="sqf-row">
+												<!-- ============ CSR Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text=" CSR" />
+													<sq8:DataSource runat="server" ID="DataSource9" QueryName="USP_GetGroupMembersByOrgPath_CSRs"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbCSR" Width="100%" DataSourceID="DataSource9" DataTextField="FullName" DataValueField="fldEmployeeId" EmptyMessage="--Select CSR--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbCSR" DataField="PreCSR"></sq:BindableControl>
+												</div>
+												<!-- ============ CSR Section End ========== -->
+												<!-- ============ Vendor Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Vendor" />
+													<sq8:DataSource runat="server" ID="DataSource10" QueryName="USP_GetGroupMembersByOrgPath_Vendors"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbVendor" Width="100%" DataSourceID="DataSource10" DataTextField="FullName" DataValueField="fldEmployeeId" EmptyMessage="--Select Vendor--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbVendor" DataField="Vendor"></sq:BindableControl>
+												</div>
+												<!-- ============ Vendor Section End ========== -->
+												<!-- ============ Report Type Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Assignment Start Date" />
+													<sq8:DatePicker runat="server" ID="dtAssignmentStartDate" Width="100%" Enabled="true"></sq8:DatePicker>
+													<sq:BindableControl runat="server" TargetControlID="dtAssignmentStartDate" DataField="AssignmentStartDate"></sq:BindableControl>
+												</div>
+												<!-- ============ Report Type Section End ========== -->
+												<!-- ============ Assignment Date Range Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Assignment End Date" />
+													<sq8:DatePicker runat="server" ID="dtAssignmentEndDate" Width="100%" Enabled="true"></sq8:DatePicker>
+													<sq:BindableControl runat="server" TargetControlID="dtAssignmentEndDate" DataField="AssignmentEndDate"></sq:BindableControl>
+												</div>
+												<!-- ============ Assignment Date Range Section End ========== -->
+											</div>
+
+											<div class="sqf-row">
+												<!-- ============ Job Status Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="Job Status" />
+													<sq8:DataSource runat="server" ID="DataSource11" QueryName="ref:nsReports/JobStatuses"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbJobStatus" Width="100%" DataSourceID="DataSource11" DataTextField="Description" DataValueField="Code" EmptyMessage="--Select Job Status--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbJobStatus" DataField="cmbJobSatus"></sq:BindableControl>
+												</div>
+												<!-- ============ Job Status Section End ========== -->
+												<!-- ============ History Assignment Status Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="History Assignment Status" />
+													<sq8:DataSource runat="server" ID="DataSource12" QueryName="ref:nsReports/AssignmentStatuses"></sq8:DataSource>
+													<sq8:ComboBox runat="server" ID="cmbHistoryAssignmentStatus" Width="100%" DataSourceID="DataSource12" DataTextField="Description" DataValueField="Code" EmptyMessage="--Select History Assignment Status--" AutoInsertEmptyItem="true"></sq8:ComboBox>
+													<sq:BindableControl runat="server" TargetControlID="cmbHistoryAssignmentStatus" DataField="cmbHistoryAssignmentStatus"></sq:BindableControl>
+												</div>
+												<!-- ============ History Assignment Status ========== -->
+												<!-- ============ History Assignment Date Range Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+													<sq8:Label runat="server" Text="History Assignment Start  Date" />
+													<sq8:DateTimePicker runat="server" ID="dtHistoryAssignmentDateRange" Width="100%" Enabled="False"></sq8:DateTimePicker>
+												</div>
+												<!-- ============ History Assignment Date Range Section End ========== -->
+											</div>
+											<br>
+											<div class="sqf-row">
+												<!-- ============ Action Button Section Start ========== -->
+												<div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v text-center">
+													<sq8:Button runat="server" Text="Reset" OnClientClicked="Clear" BackColor="#FCB686" BorderColor="#FCB686" UseSubmitBehavior="false" AutoPostBack="false"></sq8:Button>
+													<sq8:Button runat="server" Text="Run" CommandName="SaveAll" SingleClick="True" SingleClickText="Processing..." CommandArgument="0"></sq8:Button>
+												</div>
+												<!-- ============ Action Button Section End ========== -->
+											</div>
+											<!-- ======== Report Search Result Table Section Start ======== -->
+											<div class="sqf-section">
+												<div class="sqf-row">
+													<div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v" style="padding:0px;">
+														<div class="sqf-section" ID="btsOverallReportDetailsSection" style="padding:0px 13px;">
+															<!-- ======== Panel Header Section Start ======== -->
+															<div class="sqf-section-row panel-heading" data-toggle="collapse" href="#collapseBTSDetailsReport">
+																<h2 class="custom-panel-header"><sq8:Text runat="server" ID="btsReportDetailsLabel" Text="BTS Overall Activity Report Search Result"></sq8:Text></h2>
+															</div>
+															<!-- ======== Panel Header Section End ======== -->
+															<div class="sqf-section-body sqf-container panel-collapse collapse in" style="padding:4px 10px 10px;" ID="collapseBTSDetailsReport">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- ======== Report Search Result Table Section End ======== -->
+											<div class="sqf-row">
+												<div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v text-center">
+													<sq8:Grid runat="server" ID="USP_BTS_Overall_Activity_ReportGridView" DataSourceID="USP_BTS_Overall_Activity_ReportDataSource"
+															  AutoGenerateColumns="False" GroupPanelPosition="Top">
+														<GroupingSettings ExpandAllTooltip="" CollapseAllTooltip=""></GroupingSettings>
+
+														<HierarchySettings ExpandAllTooltip="" CollapseAllTooltip=""></HierarchySettings>
+
+														<MasterTableView DataKeyNames="AssignmentID,AssignmentStatus,AssignmentReceivedDate,ClaimNumber,Client,Age,AgeInStatus,AssignmentTypeDesc,AssignmentYear,AssignmentMonth,AssignmentWeek,Customer,CityStateZIP,CustomerPhone1,CustomerPhone2,CustomerPhone3,Email,AfterHoursDispatch,PendingEAssignment,Vendor,Adjustor,Reviewer,PreCSRFullName,PostCSRFullName,JobStatus,JobAmount,LossDate,AmountPaidthroughBTS,AmountPaidthroughInsured,PaymentTotal,NoofEstimates,OriginalEstimate,FinalEstimate,EstimateVariance,Total,MinutesToContact,DaystoInspect,DaysToUploadEstimate,Daystosubmitestimatetoclient,DaystoClientApproval,daysfromjobstarttojobfinish,daysAssignmentreceivedtoJobComplete,DaystoCOSreceived,DaysCOSRectoCNTSvcPmt,DaysCNTtoSvcPmtRec-CNTPaid,EstimateSupport" DataSourceID="USP_BTS_Overall_Activity_ReportDataSource">
+															<CommandItemSettings PrevFrozenColumnText="" ShowExportToExcelButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False"></CommandItemSettings>
+
+															<RowIndicatorColumn FilterControlAltText=""></RowIndicatorColumn>
+
+															<ExpandCollapseColumn FilterControlAltText=""></ExpandCollapseColumn>
+															<Columns>
+																<sqr8:GridHyperLinkColumn DataNavigateUrlFields="fldMasterIWfId" DataNavigateUrlFormatString="javascript:showAssignment({0})" DataTextField="AssignmentID" DataTextFormatString="{0}" HeaderText="Assignment ID" SortExpression="AssignmentID" UniqueName="AssignmentID" DataType="System.Int64" FilterControlAltText=""></sqr8:GridHyperLinkColumn>
+																<sqr8:GridBoundColumn DataField="AssignmentStatus" ReadOnly="True" HeaderText="Assignment Status" SortExpression="AssignmentStatus" UniqueName="AssignmentStatus" FilterControlAltText="" DataType="System.String">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+
+																<sqr8:GridBoundColumn DataField="AssignmentReceivedDate" ReadOnly="True" HeaderText="Assignment Received Date" SortExpression="AssignmentReceivedDate" UniqueName="AssignmentReceivedDate" FilterControlAltText="" DataType="System.DateTime">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="ClaimNumber" ReadOnly="True" HeaderText="Claim Number" SortExpression="ClaimNumber" UniqueName="ClaimNumber" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Client" ReadOnly="True" HeaderText="Client" SortExpression="Client" UniqueName="Client" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Age" ReadOnly="True" HeaderText="Age" SortExpression="Age" UniqueName="Age" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AgeInStatus" ReadOnly="True" HeaderText="Age In Status" SortExpression="AgeInStatus" UniqueName="AgeInStatus" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AssignmentTypeDesc" ReadOnly="True" HeaderText="Assignment Type" SortExpression="AssignmentTypeDesc" UniqueName="AssignmentTypeDesc" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AssignmentYear" ReadOnly="True" HeaderText="Assignment Year" SortExpression="AssignmentYear" UniqueName="AssignmentYear" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AssignmentMonth" ReadOnly="True" HeaderText="Assignment Month" SortExpression="AssignmentMonth" UniqueName="AssignmentMonth" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AssignmentWeek" ReadOnly="True" HeaderText="Assignment Week" SortExpression="AssignmentWeek" UniqueName="AssignmentWeek" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Customer" ReadOnly="True" HeaderText="Customer" SortExpression="Customer" UniqueName="Customer" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="CityStateZIP" ReadOnly="True" HeaderText="City State ZIP" SortExpression="CityStateZIP" UniqueName="CityStateZIP" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="CustomerPhone1" ReadOnly="True" HeaderText="Customer Phone1" SortExpression="CustomerPhone1" UniqueName="CustomerPhone1" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="CustomerPhone2" ReadOnly="True" HeaderText="Customer Phone2" SortExpression="CustomerPhone2" UniqueName="CustomerPhone2" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="CustomerPhone3" ReadOnly="True" HeaderText="Customer Phone3" SortExpression="CustomerPhone3" UniqueName="CustomerPhone3" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Email" ReadOnly="True" HeaderText="Email" SortExpression="Email" UniqueName="Email" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AfterHoursDispatch" ReadOnly="True" HeaderText="After Hours Dispatch" SortExpression="AfterHoursDispatch" UniqueName="AfterHoursDispatch" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="PendingEAssignment" ReadOnly="True" HeaderText="Pending EAssignment" SortExpression="PendingEAssignment" UniqueName="PendingEAssignment" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Vendor" ReadOnly="True" HeaderText="Vendor" SortExpression="Vendor" UniqueName="Vendor" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Adjustor" ReadOnly="True" HeaderText="Adjustor" SortExpression="Adjustor" UniqueName="Adjustor" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Reviewer" ReadOnly="True" HeaderText="Reviewer" SortExpression="Reviewer" UniqueName="Reviewer" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="PreCSRFullName" ReadOnly="True" HeaderText="PreCSRFullName" SortExpression="PreCSRFullName" UniqueName="PreCSRFullName" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="PostCSRFullName" ReadOnly="True" HeaderText="PostCSRFullName" SortExpression="PostCSRFullName" UniqueName="PostCSRFullName" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="JobStatus" ReadOnly="True" HeaderText="JobStatus" SortExpression="JobStatus" UniqueName="JobStatus" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="JobAmount" ReadOnly="True" HeaderText="JobAmount" SortExpression="JobAmount" UniqueName="JobAmount" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="LossDate" ReadOnly="True" HeaderText="Loss Date" SortExpression="LossDate" UniqueName="LossDate" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AmountPaidthroughBTS" ReadOnly="True" HeaderText="AmountPaidthroughBTS" SortExpression="AmountPaidthroughBTS" UniqueName="AmountPaidthroughBTS" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="AmountPaidthroughInsured" ReadOnly="True" HeaderText="AmountPaidthroughInsured" SortExpression="AmountPaidthroughInsured" UniqueName="AmountPaidthroughInsured" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="PaymentTotal" ReadOnly="True" HeaderText="PaymentTotal" SortExpression="PaymentTotal" UniqueName="PaymentTotal" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="NoofEstimates" ReadOnly="True" HeaderText="NoofEstimates" SortExpression="NoofEstimates" UniqueName="NoofEstimates" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="OriginalEstimate" ReadOnly="True" HeaderText="OriginalEstimate" SortExpression="OriginalEstimate" UniqueName="OriginalEstimate" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="FinalEstimate" ReadOnly="True" HeaderText="FinalEstimate" SortExpression="FinalEstimate" UniqueName="FinalEstimate" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="EstimateVariance" ReadOnly="True" HeaderText="EstimateVariance" SortExpression="EstimateVariance" UniqueName="EstimateVariance" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Total" ReadOnly="True" HeaderText="Total" SortExpression="Total" UniqueName="Total" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="MinutesToContact" ReadOnly="True" HeaderText="MinutesToContact" SortExpression="MinutesToContact" UniqueName="MinutesToContact" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="DaystoInspect" ReadOnly="True" HeaderText="DaystoInspect" SortExpression="DaystoInspect" UniqueName="DaystoInspect" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="DaysToUploadEstimate" ReadOnly="True" HeaderText="DaysToUploadEstimate" SortExpression="DaysToUploadEstimate" UniqueName="DaysToUploadEstimate" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="Daystosubmitestimatetoclient" ReadOnly="True" HeaderText="Daystosubmitestimatetoclient" SortExpression="Daystosubmitestimatetoclient" UniqueName="Daystosubmitestimatetoclient" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="DaystoClientApproval" ReadOnly="True" HeaderText="DaystoClientApproval" SortExpression="DaystoClientApproval" UniqueName="DaystoClientApproval" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="daysfromjobstarttojobfinish" ReadOnly="True" HeaderText="daysfromjobstarttojobfinish" SortExpression="daysfromjobstarttojobfinish" UniqueName="daysfromjobstarttojobfinish" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="daysAssignmentreceivedtoJobComplete" ReadOnly="True" HeaderText="daysAssignmentreceivedtoJobComplete" SortExpression="daysAssignmentreceivedtoJobComplete" UniqueName="daysAssignmentreceivedtoJobComplete" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="DaystoCOSreceived" ReadOnly="True" HeaderText="DaystoCOSreceived" SortExpression="DaystoCOSreceived" UniqueName="DaystoCOSreceived" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="DaysCOSRectoCNTSvcPmt" ReadOnly="True" HeaderText="DaysCOSRectoCNTSvcPmt" SortExpression="DaysCOSRectoCNTSvcPmt" UniqueName="DaysCOSRectoCNTSvcPmt" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="DaysCNTtoSvcPmtRec-CNTPaid" ReadOnly="True" HeaderText="DaysCNTtoSvcPmtRec-CNTPaid" SortExpression="DaysCNTtoSvcPmtRec-CNTPaid" UniqueName="DaysCNTtoSvcPmtRec-CNTPaid" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+																<sqr8:GridBoundColumn DataField="EstimateSupport" ReadOnly="True" HeaderText="Estimate Support" SortExpression="EstimateSupport" UniqueName="EstimateSupport" FilterControlAltText="">
+																	<ColumnValidationSettings>
+																		<RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+																	</ColumnValidationSettings>
+																</sqr8:GridBoundColumn>
+															</Columns>
+
+															<EditFormSettings>
+																<EditColumn FilterControlAltText=""></EditColumn>
+															</EditFormSettings>
+
+															<PagerStyle GoToPageButtonToolTip=""></PagerStyle>
+
+															<AutoGeneratedEditColumnSettings ButtonType="ImageButton"></AutoGeneratedEditColumnSettings>
+
+															<AutoGeneratedDeleteColumnSettings ButtonType="ImageButton"></AutoGeneratedDeleteColumnSettings>
+														</MasterTableView>
+
+														<PagerStyle GoToPageButtonToolTip=""></PagerStyle>
+
+														<FilterMenu EnableImageSprites="True"></FilterMenu>
+													</sq8:Grid>
+
+													<sq8:DataSource runat="server" ID="USP_BTS_Overall_Activity_ReportDataSource"
+																	QueryName="USP_BTS_Overall_Activity_Report_Ping">
+													</sq8:DataSource>
+													<sq:BoundControl runat="server" TargetControlID="USP_BTS_Overall_Activity_ReportGridView"></sq:BoundControl>
+
+
+												</div>
+											</div>
+
+
+
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+
+					</ContentTemplate>
+				</asp:UpdatePanel>
+			</ContentTemplate>
+		</sq8:Form>
+		<sq8:DataSource runat="server" ID="DataSource4" QueryName="BTSReportSearchParameters"></sq8:DataSource>
+		<sq:BoundControl runat="server" TargetControlID="Search"></sq:BoundControl>
+		<!-- ======== Report Filter Section End ======== -->
+
+		<br>
+
+	</div>
+</div>
+<sq8:SubView runat="server" ID="SubView1" VirtualPath="../../../Common Components/{active}/CommonForms/Javascript.ascx"></sq8:SubView>
+<!-- ======== HTML Section End ======== -->
+<!-- ======== Custom Style Section Start ======== -->
+<style>
+	.row {
+		height: 10px !important;
+		margin-top: 0px !important;
+		margin-bottom: 0px !important;
+	}
+
+	.custom-panel-header {
+		font-weight: bold;
+		font-size: 16px;
+		color: #fff;
+		font-family: Arial;
+	}
+	/***** ========= Collapsed Panel Style Start ======== *****/
+	.panel-heading {
+		cursor: pointer;
+		background-color: #002e62;
+	}
+
+		.panel-heading:after {
+			/* symbol for "opening" panels */
+			font-family: 'Glyphicons Halflings';
+			/* essential for enabling glyphicon */
+			content: "\e114";
+			/* adjust as needed, taken from bootstrap.css */
+			float: right;
+			/* adjust as needed */
+			color: #fff;
+			/* adjust as needed */
+			margin-top: -1.25em;
+		}
+
+		.panel-heading.collapsed:after {
+			/* symbol for "collapsed" panels */
+			content: "\e080";
+			/* adjust as needed, taken from bootstrap.css */
+		}
+	/***** ========= Collapsed Panel Style End ======== *****/
+	label {
+		font-weight: normal !important;
+	}
+
+	.RadRadioButtonList_Sequence8 label {
+		padding-left: 10px !important;
+		cursor: pointer;
+	}
+
+
+	@media (min-width: 1200px) {
+		.sqf-layout {
+			max-width: 100% !important;
+		}
+	}
+</style>
+<!-- ======== Custom Style Section End ======== -->
