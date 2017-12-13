@@ -1,0 +1,562 @@
+﻿<?xml version="1.0"?>
+<xs:schema xmlns:tns="urn:schemas-pnmsoft-com:json2xsd:ae53c066-be5d-4ce2-811d-7c990ae10dd9" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="urn:schemas-pnmsoft-com:json2xsd:ae53c066-be5d-4ce2-811d-7c990ae10dd9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="root_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Assignment" nillable="true" type="tns:root_item_Assignment" />
+      <xs:element minOccurs="0" name="AssignmentID" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreateOn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsImported" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUpdated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifyOn" nillable="true" type="xs:anyType" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Notes" nillable="true" type="q1:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="Statuses" nillable="true" type="tns:ArrayOfroot_item_Statuses_item" />
+      <xs:element minOccurs="0" name="XactTransactionID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item" nillable="true" type="tns:root_item" />
+  <xs:complexType name="root_item_Assignment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adm" nillable="true" type="tns:root_item_Assignment_Adm" />
+      <xs:element minOccurs="0" name="ClaimInfo" nillable="true" type="tns:root_item_Assignment_ClaimInfo" />
+      <xs:element minOccurs="0" name="Contacts" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item" />
+      <xs:element minOccurs="0" name="Params" nillable="true" type="tns:root_item_Assignment_Params" />
+      <xs:element minOccurs="0" name="ProjectInfo" nillable="true" type="tns:root_item_Assignment_ProjectInfo" />
+      <xs:element minOccurs="0" name="XactNetInfo" nillable="true" type="tns:root_item_Assignment_XactNetInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment" nillable="true" type="tns:root_item_Assignment" />
+  <xs:complexType name="root_item_Assignment_Adm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgentCode" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="AgentName" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="BranchNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ClientNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CoverageInfo" nillable="true" type="tns:root_item_Assignment_Adm_CoverageInfo" />
+      <xs:element minOccurs="0" name="CoverageLoss" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss" />
+      <xs:element minOccurs="0" name="DateOfLoss" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateReceived" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SubrogationFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SubrogationNotes" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="TypesOfLoss" nillable="true" type="tns:ArrayOfroot_item_Assignment_Adm_TypesOfLoss_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm" nillable="true" type="tns:root_item_Assignment_Adm" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyDeductible" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeOwnerCoverageInfo" nillable="true" type="tns:root_item_Assignment_Adm_CoverageInfo_HomeOwnerCoverageInfo" />
+      <xs:element minOccurs="0" name="PolicyType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageInfo" nillable="true" type="tns:root_item_Assignment_Adm_CoverageInfo" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageInfo_HomeOwnerCoverageInfo">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AddSubLimits" nillable="true" type="q2:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="AmountCovA" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="AmountCovD" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Coins" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="DeductA" nillable="true" type="xs:anyType" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Forms" nillable="true" type="q3:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="RcbAvailableCovA" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageInfo_HomeOwnerCoverageInfo" nillable="true" type="tns:root_item_Assignment_Adm_CoverageInfo_HomeOwnerCoverageInfo" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageLoss">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BlockModificationOfDeduct" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BlockModificationOfTOL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Catastrophe" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ClaimNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoverageNotes" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Coverages" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Coverages" />
+      <xs:element minOccurs="0" name="IsCommercial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mortgagee" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="OverallDeductible" type="xs:double" />
+      <xs:element minOccurs="0" name="PolicyEnd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyStart" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyType" type="xs:int" />
+      <xs:element minOccurs="0" name="Tol" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Tol" />
+      <xs:element minOccurs="0" name="roofType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageLoss" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageLoss_Coverages">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Coverage" nillable="true" type="tns:ArrayOfroot_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" />
+      <xs:element minOccurs="0" name="DoNotApplyLimits" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LossOfUse" type="xs:double" />
+      <xs:element minOccurs="0" name="LossOfUseReserve" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageLoss_Coverages" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Coverages" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyTo" type="xs:int" />
+      <xs:element minOccurs="0" name="CoIns" type="xs:int" />
+      <xs:element minOccurs="0" name="CovName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CovType" type="xs:int" />
+      <xs:element minOccurs="0" name="Deductible" type="xs:double" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyLimit" type="xs:double" />
+      <xs:element minOccurs="0" name="ReserveAmt" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Coverages_Coverage_item" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageLoss_Tol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Col" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Tol_Col" />
+      <xs:element minOccurs="0" name="Desc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageLoss_Tol" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Tol" />
+  <xs:complexType name="root_item_Assignment_Adm_CoverageLoss_Tol_Col">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Desc" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="OtherCause" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_CoverageLoss_Tol_Col" nillable="true" type="tns:root_item_Assignment_Adm_CoverageLoss_Tol_Col" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_Adm_TypesOfLoss_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_Adm_TypesOfLoss_item" nillable="true" type="tns:root_item_Assignment_Adm_TypesOfLoss_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_Adm_TypesOfLoss_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_Adm_TypesOfLoss_item" />
+  <xs:complexType name="root_item_Assignment_Adm_TypesOfLoss_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Deductible" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tol" nillable="true" type="tns:root_item_Assignment_Adm_TypesOfLoss_item_Tol" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_TypesOfLoss_item" nillable="true" type="tns:root_item_Assignment_Adm_TypesOfLoss_item" />
+  <xs:complexType name="root_item_Assignment_Adm_TypesOfLoss_item_Tol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Desc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Adm_TypesOfLoss_item_Tol" nillable="true" type="tns:root_item_Assignment_Adm_TypesOfLoss_item_Tol" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdminInfo" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AdminInfo" />
+      <xs:element minOccurs="0" name="AssignmentReferral" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AssignmentReferral" />
+      <xs:element minOccurs="0" name="LossInfo" nillable="true" type="tns:root_item_Assignment_ClaimInfo_LossInfo" />
+      <xs:element minOccurs="0" name="ServiceHistory" nillable="true" type="tns:root_item_Assignment_ClaimInfo_ServiceHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo" nillable="true" type="tns:root_item_Assignment_ClaimInfo" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_AdminInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccessName" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="AccessPhone" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="AccessPhoneExt" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Agency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Branch" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CaseCreationHour" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Coverage" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="HourlyRate" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="InsuranceClient" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient" />
+      <xs:element minOccurs="0" name="OrigBranch" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="OrigFileNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Origin" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="TelephoneCharge" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ThirdPartyClaimant" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ThirdPartyPhone" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ThirdPartyPhoneExt" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_AdminInfo" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AdminInfo" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Addresses" nillable="true" type="tns:ArrayOfroot_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" />
+      <xs:element minOccurs="0" name="ClientDesc" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="PrimaryContact" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Postal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street2" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Street3" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AdminInfo_InsuranceClient_Addresses_item" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_AssignmentReferral">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillArrangement" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AssignmentReferral_BillArrangement" />
+      <xs:element minOccurs="0" name="ReturnProductPreference" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AssignmentReferral_ReturnProductPreference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_AssignmentReferral" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AssignmentReferral" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_AssignmentReferral_BillArrangement">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_AssignmentReferral_BillArrangement" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AssignmentReferral_BillArrangement" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_AssignmentReferral_ReturnProductPreference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="FaxPhoneExt" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_AssignmentReferral_ReturnProductPreference" nillable="true" type="tns:root_item_Assignment_ClaimInfo_AssignmentReferral_ReturnProductPreference" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_LossInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReceivedBy" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ReferredBy" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ReferredByPhone" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ReferredByPhoneExt" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_LossInfo" nillable="true" type="tns:root_item_Assignment_ClaimInfo_LossInfo" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_ServiceHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reserve" nillable="true" type="tns:root_item_Assignment_ClaimInfo_ServiceHistory_Reserve" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_ServiceHistory" nillable="true" type="tns:root_item_Assignment_ClaimInfo_ServiceHistory" />
+  <xs:complexType name="root_item_Assignment_ClaimInfo_ServiceHistory_Reserve">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALE" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="APS" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Building" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Contents" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ClaimInfo_ServiceHistory_Reserve" nillable="true" type="tns:root_item_Assignment_ClaimInfo_ServiceHistory_Reserve" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_Contacts_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_Contacts_item" nillable="true" type="tns:root_item_Assignment_Contacts_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_Contacts_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item" />
+  <xs:complexType name="root_item_Assignment_Contacts_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Addresses" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item_Addresses_item" />
+      <xs:element minOccurs="0" name="AdjNo" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Company" nillable="true" type="tns:root_item_Assignment_Contacts_item_Company" />
+      <xs:element minOccurs="0" name="ContactMethods" nillable="true" type="tns:root_item_Assignment_Contacts_item_ContactMethods" />
+      <xs:element minOccurs="0" name="MortgageHolder" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="MortgageLoanNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QCode" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Contacts_item" nillable="true" type="tns:root_item_Assignment_Contacts_item" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_Contacts_item_Addresses_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_Contacts_item_Addresses_item" nillable="true" type="tns:root_item_Assignment_Contacts_item_Addresses_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_Contacts_item_Addresses_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item_Addresses_item" />
+  <xs:complexType name="root_item_Assignment_Contacts_item_Addresses_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accuracy" type="xs:int" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="Lon" type="xs:double" />
+      <xs:element minOccurs="0" name="Postal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street2" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Street3" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Contacts_item_Addresses_item" nillable="true" type="tns:root_item_Assignment_Contacts_item_Addresses_item" />
+  <xs:complexType name="root_item_Assignment_Contacts_item_Company">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="PrimaryContact" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="QCode" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Contacts_item_Company" nillable="true" type="tns:root_item_Assignment_Contacts_item_Company" />
+  <xs:complexType name="root_item_Assignment_Contacts_item_ContactMethods">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Emails" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Emails_item" />
+      <xs:element minOccurs="0" name="Phones" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Phones_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Contacts_item_ContactMethods" nillable="true" type="tns:root_item_Assignment_Contacts_item_ContactMethods" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Emails_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_Contacts_item_ContactMethods_Emails_item" nillable="true" type="tns:root_item_Assignment_Contacts_item_ContactMethods_Emails_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Emails_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Emails_item" />
+  <xs:complexType name="root_item_Assignment_Contacts_item_ContactMethods_Emails_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Contacts_item_ContactMethods_Emails_item" nillable="true" type="tns:root_item_Assignment_Contacts_item_ContactMethods_Emails_item" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Phones_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_Contacts_item_ContactMethods_Phones_item" nillable="true" type="tns:root_item_Assignment_Contacts_item_ContactMethods_Phones_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Phones_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_Contacts_item_ContactMethods_Phones_item" />
+  <xs:complexType name="root_item_Assignment_Contacts_item_ContactMethods_Phones_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Contacts_item_ContactMethods_Phones_item" nillable="true" type="tns:root_item_Assignment_Contacts_item_ContactMethods_Phones_item" />
+  <xs:complexType name="root_item_Assignment_Params">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CheckPointPL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PriceList" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_Params" nillable="true" type="tns:root_item_Assignment_Params" />
+  <xs:complexType name="root_item_Assignment_ProjectInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IteratedXpertVars" nillable="true" type="tns:ArrayOfroot_item_Assignment_ProjectInfo_IteratedXpertVars_item" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShowDeskAdjuster" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ShowIADeskAdjuster" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stamp" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ProjectInfo" nillable="true" type="tns:root_item_Assignment_ProjectInfo" />
+  <xs:complexType name="ArrayOfroot_item_Assignment_ProjectInfo_IteratedXpertVars_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Assignment_ProjectInfo_IteratedXpertVars_item" nillable="true" type="tns:root_item_Assignment_ProjectInfo_IteratedXpertVars_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Assignment_ProjectInfo_IteratedXpertVars_item" nillable="true" type="tns:ArrayOfroot_item_Assignment_ProjectInfo_IteratedXpertVars_item" />
+  <xs:complexType name="root_item_Assignment_ProjectInfo_IteratedXpertVars_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_ProjectInfo_IteratedXpertVars_item" nillable="true" type="tns:root_item_Assignment_ProjectInfo_IteratedXpertVars_item" />
+  <xs:complexType name="root_item_Assignment_XactNetInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignmentType" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignorId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="BusinessUnit" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Cancellation" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CarrierAttribute1" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CarrierAttribute2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarrierAttribute3" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CarrierExternalUniqueId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CarrierId" type="xs:int" />
+      <xs:element minOccurs="0" name="CarrierName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarrierOffice1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarrierOffice2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatorsEmailAddress" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CreatorsFirstName" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CreatorsLastName" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CreatorsUserNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="EnterpriseNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="EstimateCount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstimateType" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ExternalCompanyId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="FederalTIN" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="JobSizeCode" type="xs:int" />
+      <xs:element minOccurs="0" name="NewRotationTrade" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ProfileCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PspNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="RecipientsId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="RecipientsUserNumber" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="RecipientsXM8UserId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="RecipientsXNAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReplyToQ" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ReplyToQMgr" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="RotationTrade" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderAttribute1" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SenderAttribute2" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SenderAttribute3" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SenderExternalUniqueId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SenderId" type="xs:int" />
+      <xs:element minOccurs="0" name="SendersOfficeDescription1" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SendersOfficeDescription2" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SendersOfficeDescription3" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SendersOfficeExternalCode1" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SendersOfficeExternalCode2" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SendersOfficeExternalCode3" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="SendersXNAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceTransactionId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ThirdPartyGeoId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ThirdPartyId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ThirdPartyUrl" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionType" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="ValuationId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="XaProjectId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="XaTaskId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="XidLogin" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Assignment_XactNetInfo" nillable="true" type="tns:root_item_Assignment_XactNetInfo" />
+  <xs:complexType name="ArrayOfroot_item_Statuses_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item_Statuses_item" nillable="true" type="tns:root_item_Statuses_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item_Statuses_item" nillable="true" type="tns:ArrayOfroot_item_Statuses_item" />
+  <xs:complexType name="root_item_Statuses_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignmentStatusID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateOn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsImported" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifyOn" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:root_item_Statuses_item_Status" />
+      <xs:element minOccurs="0" name="XactTransactionID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item" nillable="true" type="tns:root_item_Statuses_item" />
+  <xs:complexType name="root_item_Statuses_item_Status">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adm" nillable="true" type="tns:root_item_Statuses_item_Status_Adm" />
+      <xs:element minOccurs="0" name="Contacts" nillable="true" type="tns:root_item_Statuses_item_Status_Contacts" />
+      <xs:element minOccurs="0" name="XactNetInfo" nillable="true" type="tns:root_item_Statuses_item_Status_XactNetInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status" nillable="true" type="tns:root_item_Statuses_item_Status" />
+  <xs:complexType name="root_item_Statuses_item_Status_Adm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TypesOfLoss" nillable="true" type="tns:root_item_Statuses_item_Status_Adm_TypesOfLoss" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_Adm" nillable="true" type="tns:root_item_Statuses_item_Status_Adm" />
+  <xs:complexType name="root_item_Statuses_item_Status_Adm_TypesOfLoss">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TypeOfLoss" nillable="true" type="tns:root_item_Statuses_item_Status_Adm_TypesOfLoss_TypeOfLoss" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_Adm_TypesOfLoss" nillable="true" type="tns:root_item_Statuses_item_Status_Adm_TypesOfLoss" />
+  <xs:complexType name="root_item_Statuses_item_Status_Adm_TypesOfLoss_TypeOfLoss">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_Adm_TypesOfLoss_TypeOfLoss" nillable="true" type="tns:root_item_Statuses_item_Status_Adm_TypesOfLoss_TypeOfLoss" />
+  <xs:complexType name="root_item_Statuses_item_Status_Contacts">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Contact" nillable="true" type="tns:root_item_Statuses_item_Status_Contacts_Contact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_Contacts" nillable="true" type="tns:root_item_Statuses_item_Status_Contacts" />
+  <xs:complexType name="root_item_Statuses_item_Status_Contacts_Contact">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContactMethods" nillable="true" type="tns:root_item_Statuses_item_Status_Contacts_Contact_ContactMethods" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_Contacts_Contact" nillable="true" type="tns:root_item_Statuses_item_Status_Contacts_Contact" />
+  <xs:complexType name="root_item_Statuses_item_Status_Contacts_Contact_ContactMethods">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_Contacts_Contact_ContactMethods" nillable="true" type="tns:root_item_Statuses_item_Status_Contacts_Contact_ContactMethods" />
+  <xs:complexType name="root_item_Statuses_item_Status_XactNetInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ControlPoints" nillable="true" type="tns:root_item_Statuses_item_Status_XactNetInfo_ControlPoints" />
+      <xs:element minOccurs="0" name="OrigTransactionId" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="RecipientsXNAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_XactNetInfo" nillable="true" type="tns:root_item_Statuses_item_Status_XactNetInfo" />
+  <xs:complexType name="root_item_Statuses_item_Status_XactNetInfo_ControlPoints">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ControlPoint" nillable="true" type="tns:root_item_Statuses_item_Status_XactNetInfo_ControlPoints_ControlPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_XactNetInfo_ControlPoints" nillable="true" type="tns:root_item_Statuses_item_Status_XactNetInfo_ControlPoints" />
+  <xs:complexType name="root_item_Statuses_item_Status_XactNetInfo_ControlPoints_ControlPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Stamp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Statuses_item_Status_XactNetInfo_ControlPoints_ControlPoint" nillable="true" type="tns:root_item_Statuses_item_Status_XactNetInfo_ControlPoints_ControlPoint" />
+  <xs:complexType name="root_item_Notes_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateOn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsImported" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifyOn" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="tns:root_item_Notes_item_Note" />
+      <xs:element minOccurs="0" name="NoteID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="XactTransactionID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Notes_item" nillable="true" type="tns:root_item_Notes_item" />
+  <xs:complexType name="root_item_Notes_item_Note">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="XactNetInfo" nillable="true" type="tns:root_item_Notes_item_Note_XactNetInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Notes_item_Note" nillable="true" type="tns:root_item_Notes_item_Note" />
+  <xs:complexType name="root_item_Notes_item_Note_XactNetInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ControlPoints" nillable="true" type="tns:root_item_Notes_item_Note_XactNetInfo_ControlPoints" />
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Notes_item_Note_XactNetInfo" nillable="true" type="tns:root_item_Notes_item_Note_XactNetInfo" />
+  <xs:complexType name="root_item_Notes_item_Note_XactNetInfo_ControlPoints">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ControlPoint" nillable="true" type="tns:root_item_Notes_item_Note_XactNetInfo_ControlPoints_ControlPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Notes_item_Note_XactNetInfo_ControlPoints" nillable="true" type="tns:root_item_Notes_item_Note_XactNetInfo_ControlPoints" />
+  <xs:complexType name="root_item_Notes_item_Note_XactNetInfo_ControlPoints_ControlPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Stamp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="root_item_Notes_item_Note_XactNetInfo_ControlPoints_ControlPoint" nillable="true" type="tns:root_item_Notes_item_Note_XactNetInfo_ControlPoints_ControlPoint" />
+  <xs:complexType name="ArrayOfroot_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="root_item" nillable="true" type="tns:root_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfroot_item" nillable="true" type="tns:ArrayOfroot_item" />
+</xs:schema>

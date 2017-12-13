@@ -1,0 +1,41 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <add name="insertCustomHeaders" type="PNMsoft.Sequence.ServiceModel.Web.RestServiceInsertCustomHeadersExtension, PNMsoft.Sequence.ServiceModel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0a1a1b90c1c5dca1" />
+      </behaviorExtensions>
+    </extensions>
+    <client>
+      <endpoint name="ShlomoIntegrationsServicewebHttpBinding" binding="webHttpBinding" bindingConfiguration="WebHttpBinding" behaviorConfiguration="webBehavior" contract="ShlomoIntegrationsService"></endpoint>
+      <metadata>
+        <wsdlImporters>
+          <extension type="PNMsoft.Sequence.ServiceModel.Web.RestWsdlImportExtension, PNMsoft.Sequence.ServiceModel, Version=8.0.0.0, Culture=neutral,PublicKeyToken=0a1a1b90c1c5dca1" />
+        </wsdlImporters>
+      </metadata>
+    </client>
+    <bindings>
+      <webHttpBinding>
+        <binding name="WebHttpBinding">
+          <security mode="Transport">
+            <transport clientCredentialType="Basic"></transport>
+          </security>
+        </binding>
+        <binding name="WebHttpsBinding">
+          <security mode="Transport">
+            <transport clientCredentialType="Basic"></transport>
+          </security>
+        </binding>
+      </webHttpBinding>
+    </bindings>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="webBehavior">
+          <webHttp />
+          <insertCustomHeaders>
+            <headers></headers>
+          </insertCustomHeaders>
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+  </system.serviceModel>
+</configuration>
