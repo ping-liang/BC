@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:EmployeeWSDL" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:weo="http://www.example.org" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:EmployeeWSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsu:Id="http_basic_auth_over_ssl_service_policy">
+    <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+      <wsp:Policy>
+        <sp:AlgorithmSuite>
+          <wsp:Policy>
+            <sp:Basic128 />
+          </wsp:Policy>
+        </sp:AlgorithmSuite>
+        <sp:TransportToken>
+          <wsp:Policy>
+            <sp:HttpsToken RequireClientCertificate="false">
+              <wsp:Policy />
+            </sp:HttpsToken>
+          </wsp:Policy>
+        </sp:TransportToken>
+        <sp:Layout>
+          <wsp:Policy>
+            <sp:Lax />
+          </wsp:Policy>
+        </sp:Layout>
+      </wsp:Policy>
+    </sp:TransportBinding>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.example.org" elementFormDefault="qualified" targetNamespace="http://www.example.org">
+      <xsd:element name="request">
+        <xsd:annotation>
+          <xsd:documentation>A sample element</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="fault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="error" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xs:schema xmlns="http://xmlns.oracle.com/ics/tracking/ics_tracking_context.xsd" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/ics/tracking/ics_tracking_context.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ics_tracking_context">
+        <xs:annotation>
+          <xs:documentation>ICS Tracking Context Schema</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="tracking_property" type="TrackingPropertyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="TrackingPropertyType">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns="http://xmlns.oracle.com/procmon" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/procmon" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ics_insight_context">
+        <xs:annotation>
+          <xs:documentation>Insight Context Schema</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="insight_property" type="InsightPropertyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="InsightPropertyType">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="EmpServicePort_request">
+    <wsdl:part name="part" element="weo:request" />
+  </wsdl:message>
+  <wsdl:message name="EmpServicePort_response">
+    <wsdl:part name="part" element="weo:response" />
+  </wsdl:message>
+  <wsdl:message name="EmpSeriveFault">
+    <wsdl:part name="part" element="weo:fault" />
+  </wsdl:message>
+  <wsdl:portType name="EmpServicePort_GetUserName_REQUEST">
+    <wsdl:operation name="requestOperation">
+      <wsdl:input message="tns:EmpServicePort_request" />
+      <wsdl:output message="tns:EmpServicePort_response" />
+      <wsdl:fault name="EmpFault" message="tns:EmpSeriveFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmpServicePort_GetUserName_REQUEST_binding" type="tns:EmpServicePort_GetUserName_REQUEST">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#http_basic_auth_over_ssl_service_policy" wsdl:required="false" />
+    <wsdl:operation name="requestOperation">
+      <soap:operation soapAction="urn:EmployeeWSDL/requestOperation" />
+      <wsdl:input>
+        <soap:body use="literal" parts="part" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="part" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmpServicePort_GetUserName_REQUEST">
+    <wsdl:port name="EmpServicePort_GetUserName_REQUEST_pt" binding="tns:EmpServicePort_GetUserName_REQUEST_binding">
+      <soap:address location="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/SOAP_SERVICE/v01/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

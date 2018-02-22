@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A900C4D-4145-4E39-A0B6-E04BD791B5CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SOAPBasicAuthInjector</RootNamespace>
+    <AssemblyName>SOAPBasicAuthInjector</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonSoapBasicAuthOverride.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AP_CreateCase\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AR_CreateInvoice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AR_CreditNote\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AR_GetOracleInvoiceNumber\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AR_GetOutstandingAmount\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\GenPactUserInfo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="key.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AP_CreateCase\item.wsdl" />
+    <None Include="Web References\AP_CreateCase\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AR_CreateInvoice\item.wsdl" />
+    <None Include="Web References\AR_CreateInvoice\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AR_CreditNote\item.wsdl" />
+    <None Include="Web References\AR_CreditNote\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AR_GetOracleInvoiceNumber\item.wsdl" />
+    <None Include="Web References\AR_GetOracleInvoiceNumber\OracleInvoiceNo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AR_GetOracleInvoiceNumber\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AR_GetOutstandingAmount\item.wsdl" />
+    <None Include="Web References\AR_GetOutstandingAmount\OracleInvoiceResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AR_GetOutstandingAmount\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\GenPactUserInfo\item.wsdl" />
+    <None Include="Web References\GenPactUserInfo\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\GenPactUserInfo\response.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFTGETORACLE_INTEGRATION/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AR_GetOracleInvoiceNumber\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFTGETORACLE_INTEGRATION/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AR_GetOracleInvoiceNumber_OracleInvoiceNumber_Oracleinovice_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AKRITIV_CREATECA_INTEGRA/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AP_CreateCase\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AKRITIV_CREATECA_INTEGRA/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AP_CreateCase_Create_Case_From_PNMSoft_Akritiv_REQUESTPortType_CreateCase_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_CREDIT_INTEGRATION/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AR_CreditNote\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_CREDIT_INTEGRATION/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AR_CreditNote_CreditNote_CreateCredit_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_INVOICE_INTEGRAT/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AR_CreateInvoice\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_INVOICE_INTEGRAT/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AR_CreateInvoice_InoviceData_createInvoice_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_ORACLEINVO_INTEGRATIO/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AR_GetOutstandingAmount\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_ORACLEINVO_INTEGRATIO/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AR_GetOutstandingAmount_GetInvoiceStatus_Invoice_Status_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/SOAP_SERVICE/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\GenPactUserInfo\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/SOAP_SERVICE/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_GenPactUserInfo_EmpServicePort_GetUserName_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:PNM_InvoiceNo" xmlns:types="http://pnmsoft_GetInvoiceStatus.com" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:PNM_InvoiceNo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsu:Id="http_basic_auth_over_ssl_service_policy">
+    <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+      <wsp:Policy>
+        <sp:AlgorithmSuite>
+          <wsp:Policy>
+            <sp:Basic128 />
+          </wsp:Policy>
+        </sp:AlgorithmSuite>
+        <sp:TransportToken>
+          <wsp:Policy>
+            <sp:HttpsToken RequireClientCertificate="false">
+              <wsp:Policy />
+            </sp:HttpsToken>
+          </wsp:Policy>
+        </sp:TransportToken>
+        <sp:Layout>
+          <wsp:Policy>
+            <sp:Lax />
+          </wsp:Policy>
+        </sp:Layout>
+      </wsp:Policy>
+    </sp:TransportBinding>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema xmlns="http://pnmsoft_GetInvoiceStatus.com" elementFormDefault="qualified" targetNamespace="http://pnmsoft_GetInvoiceStatus.com">
+      <xsd:element name="OracleInvoiceNos" type="types:OracleInvoiceNos">
+        <xsd:annotation>
+          <xsd:documentation>A sample element</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:complexType name="OracleInvoiceNos">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="OracleInvoiceNo" type="types:OracleInvoiceNo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OracleInvoiceStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="OracleInvoiceResponse" type="types:OracleInvoiceResponse" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OracleInvoiceResponse">
+        <xsd:sequence>
+          <xsd:element name="Status" type="xsd:string" />
+          <xsd:element name="InterfaceLineAttribute1" type="xsd:string" />
+          <xsd:element name="OracleInvoiceNumber" type="xsd:string" />
+          <xsd:element maxOccurs="unbounded" name="InvoicePaymentDetail" type="types:InvoicePaymentDetail" />
+          <xsd:element name="Reason" type="xsd:string" />
+          <xsd:element name="OutstandingAmount" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="OracleInvoiceStatus" type="types:OracleInvoiceStatus" />
+      <xsd:element name="GetInvoiceStatusFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ErrorCode" type="xsd:integer" />
+            <xsd:element name="ErrorReason" type="xsd:string" />
+            <xsd:element name="ErrorDescription" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="InvoicePaymentDetail">
+        <xsd:sequence>
+          <xsd:element name="AmountReceiptID" type="xsd:integer" />
+          <xsd:element name="ApplyDate" type="xsd:date" />
+          <xsd:element name="AmountApplied" type="xsd:double" />
+          <xsd:element name="Status" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OracleInvoiceNo">
+        <xsd:sequence>
+          <xsd:element name="OracleInvoiceNo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xs:schema xmlns="http://xmlns.oracle.com/ics/tracking/ics_tracking_context.xsd" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/ics/tracking/ics_tracking_context.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ics_tracking_context">
+        <xs:annotation>
+          <xs:documentation>ICS Tracking Context Schema</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="tracking_property" type="TrackingPropertyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="TrackingPropertyType">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns="http://xmlns.oracle.com/procmon" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/procmon" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ics_insight_context">
+        <xs:annotation>
+          <xs:documentation>Insight Context Schema</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="insight_property" type="InsightPropertyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="InsightPropertyType">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetInvoiceStatus_OracleInvoiceNos">
+    <wsdl:part name="part" element="types:OracleInvoiceNos" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceStatus_OracleInvoiceStatus">
+    <wsdl:part name="part" element="types:OracleInvoiceStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceStatus_GetInvoiceStatusFault">
+    <wsdl:part name="part" element="types:GetInvoiceStatusFault" />
+  </wsdl:message>
+  <wsdl:portType name="GetInvoiceStatus_Invoice_Status_REQUEST">
+    <wsdl:operation name="GetOracleInvoiceStatusOP">
+      <wsdl:input message="tns:GetInvoiceStatus_OracleInvoiceNos" />
+      <wsdl:output message="tns:GetInvoiceStatus_OracleInvoiceStatus" />
+      <wsdl:fault name="GetInvoiceFault" message="tns:GetInvoiceStatus_GetInvoiceStatusFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetInvoiceStatus_Invoice_Status_REQUEST_binding" type="tns:GetInvoiceStatus_Invoice_Status_REQUEST">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#http_basic_auth_over_ssl_service_policy" wsdl:required="false" />
+    <wsdl:operation name="GetOracleInvoiceStatusOP">
+      <soap:operation soapAction="urn:PNM_InvoiceNo/GetOracleInvoiceStatusOP" />
+      <wsdl:input>
+        <soap:body use="literal" parts="part" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="part" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetInvoiceStatus_Invoice_Status_REQUEST">
+    <wsdl:port name="GetInvoiceStatus_Invoice_Status_REQUEST_pt" binding="tns:GetInvoiceStatus_Invoice_Status_REQUEST_binding">
+      <soap:address location="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_ORACLEINVO_INTEGRATIO/v01/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
