@@ -28,11 +28,11 @@
       <xsd:complexType name="InvoiceDataRequest">
         <xsd:sequence>
           <xsd:element minOccurs="0" name="AccountingRuleName" type="xsd:string" />
-          <xsd:element name="Amount" type="xsd:integer" />
+          <xsd:element name="Amount" type="xsd:double" />
           <xsd:element minOccurs="0" name="AmountIncludesTaxFlag" type="xsd:string" />
           <xsd:element name="BatchSourceName" type="xsd:string" />
           <xsd:element minOccurs="0" name="ConversionDate" type="xsd:date" />
-          <xsd:element minOccurs="0" name="ConversionRate" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="ConversionRate" type="xsd:double" />
           <xsd:element minOccurs="0" name="ConversionType" type="xsd:string" />
           <xsd:element name="CurrencyCode" type="xsd:string" />
           <xsd:element name="CustTrxTypeName" type="xsd:string" />
@@ -55,12 +55,12 @@
           <xsd:element name="OrigSystemShipAddressRef" type="xsd:string" />
           <xsd:element name="OrigSystemShipCustomerRef" type="xsd:string" />
           <xsd:element name="OrigSystemSoldCustomerRef" type="xsd:string" />
-          <xsd:element name="Quantity" type="xsd:integer" />
+          <xsd:element name="Quantity" type="xsd:double" />
           <xsd:element minOccurs="0" name="TaxCode" type="xsd:string" />
-          <xsd:element minOccurs="0" name="TaxRate" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="TaxRate" type="xsd:double" />
           <xsd:element name="TermName" type="xsd:string" />
           <xsd:element name="TrxDate" type="xsd:date" />
-          <xsd:element minOccurs="0" name="UnitSellingPrice" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="UnitSellingPrice" type="xsd:double" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element name="Invoice">

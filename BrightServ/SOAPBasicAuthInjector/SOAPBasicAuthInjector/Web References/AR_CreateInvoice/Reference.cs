@@ -130,7 +130,7 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         
         private string accountingRuleNameField;
         
-        private string amountField;
+        private double amountField;
         
         private string amountIncludesTaxFlagField;
         
@@ -140,7 +140,9 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         
         private bool conversionDateFieldSpecified;
         
-        private string conversionRateField;
+        private double conversionRateField;
+        
+        private bool conversionRateFieldSpecified;
         
         private string conversionTypeField;
         
@@ -186,17 +188,21 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         
         private string origSystemSoldCustomerRefField;
         
-        private string quantityField;
+        private double quantityField;
         
         private string taxCodeField;
         
-        private string taxRateField;
+        private double taxRateField;
+        
+        private bool taxRateFieldSpecified;
         
         private string termNameField;
         
         private System.DateTime trxDateField;
         
-        private string unitSellingPriceField;
+        private double unitSellingPriceField;
+        
+        private bool unitSellingPriceFieldSpecified;
         
         /// <remarks/>
         public string AccountingRuleName {
@@ -209,8 +215,7 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string Amount {
+        public double Amount {
             get {
                 return this.amountField;
             }
@@ -262,13 +267,23 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string ConversionRate {
+        public double ConversionRate {
             get {
                 return this.conversionRateField;
             }
             set {
                 this.conversionRateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ConversionRateSpecified {
+            get {
+                return this.conversionRateFieldSpecified;
+            }
+            set {
+                this.conversionRateFieldSpecified = value;
             }
         }
         
@@ -496,8 +511,7 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string Quantity {
+        public double Quantity {
             get {
                 return this.quantityField;
             }
@@ -517,13 +531,23 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string TaxRate {
+        public double TaxRate {
             get {
                 return this.taxRateField;
             }
             set {
                 this.taxRateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TaxRateSpecified {
+            get {
+                return this.taxRateFieldSpecified;
+            }
+            set {
+                this.taxRateFieldSpecified = value;
             }
         }
         
@@ -549,13 +573,23 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string UnitSellingPrice {
+        public double UnitSellingPrice {
             get {
                 return this.unitSellingPriceField;
             }
             set {
                 this.unitSellingPriceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool UnitSellingPriceSpecified {
+            get {
+                return this.unitSellingPriceFieldSpecified;
+            }
+            set {
+                this.unitSellingPriceFieldSpecified = value;
             }
         }
     }

@@ -91,5 +91,16 @@ namespace SOAPBasicAuthInjector.Properties {
                     "ype_CreateCase_REQUEST"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integ" +
+            "ration/flowsvc/soap/PNMSOFT_TEST_INTEGRATIO/v01/")]
+        public string SOAPBasicAuthInjector_AR_CreateInvoiceTest_InoviceData_PNMTest_REQUEST {
+            get {
+                return ((string)(this["SOAPBasicAuthInjector_AR_CreateInvoiceTest_InoviceData_PNMTest_REQUEST"]));
+            }
+        }
     }
 }

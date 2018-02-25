@@ -61,6 +61,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\AR_CreateInvoiceTest\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\AR_CreateInvoice\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,7 +99,9 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="key.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -102,6 +109,14 @@
     </None>
     <None Include="Web References\AP_CreateCase\item.wsdl" />
     <None Include="Web References\AP_CreateCase\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AR_CreateInvoiceTest\InvoiceData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AR_CreateInvoiceTest\item.wsdl" />
+    <None Include="Web References\AR_CreateInvoiceTest\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -122,6 +137,7 @@
     <None Include="Web References\AR_GetOracleInvoiceNumber\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web References\AR_GetOutstandingAmount\item.wsdl" />
     <None Include="Web References\AR_GetOutstandingAmount\OracleInvoiceResponse.datasource">
@@ -195,6 +211,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SOAPBasicAuthInjector_AR_GetOutstandingAmount_GetInvoiceStatus_Invoice_Status_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_TEST_INTEGRATIO/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AR_CreateInvoiceTest\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_TEST_INTEGRATIO/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AR_CreateInvoiceTest_InoviceData_PNMTest_REQUEST</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/SOAP_SERVICE/v01/%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
