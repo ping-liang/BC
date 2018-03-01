@@ -38,7 +38,7 @@ namespace SOAPBasicAuthInjector.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integ" +
-            "ration/flowsvc/soap/PNMSOFT_AR_INVOICE_INTEGRAT/v01/")]
+            "ration/flowsvc/soap/PNMSOFT_AR_CREATEIN_INTEGRAT/v01/")]
         public string SOAPBasicAuthInjector_AR_CreateInvoice_InoviceData_createInvoice_REQUEST {
             get {
                 return ((string)(this["SOAPBasicAuthInjector_AR_CreateInvoice_InoviceData_createInvoice_REQUEST"]));
@@ -49,7 +49,7 @@ namespace SOAPBasicAuthInjector.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integ" +
-            "ration/flowsvc/soap/PNMSOFT_AR_CREDIT_INTEGRATION/v01/")]
+            "ration/flowsvc/soap/PNMSOFT_AR_CREDITNO_INTEGRAT/v01/")]
         public string SOAPBasicAuthInjector_AR_CreditNote_CreditNote_CreateCredit_REQUEST {
             get {
                 return ((string)(this["SOAPBasicAuthInjector_AR_CreditNote_CreditNote_CreateCredit_REQUEST"]));
@@ -89,17 +89,6 @@ namespace SOAPBasicAuthInjector.Properties {
             get {
                 return ((string)(this["SOAPBasicAuthInjector_AP_CreateCase_Create_Case_From_PNMSoft_Akritiv_REQUESTPortT" +
                     "ype_CreateCase_REQUEST"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integ" +
-            "ration/flowsvc/soap/PNMSOFT_TEST_INTEGRATIO/v01/")]
-        public string SOAPBasicAuthInjector_AR_CreateInvoiceTest_InoviceData_PNMTest_REQUEST {
-            get {
-                return ((string)(this["SOAPBasicAuthInjector_AR_CreateInvoiceTest_InoviceData_PNMTest_REQUEST"]));
             }
         }
     }

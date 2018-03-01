@@ -27,15 +27,15 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="CreditNote_CreateCredit_REQUEST_binding", Namespace="urn:PNMSoftCreditNoteData")]
-    public partial class CreditNote_CreateCredit_REQUEST : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="CreditNote_CreditNote_REQUEST_binding", Namespace="urn:PNMSoftCreditNoteData")]
+    public partial class CreditNote_CreditNote_REQUEST : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback CreditNoteOPOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public CreditNote_CreateCredit_REQUEST() {
+        public CreditNote_CreditNote_REQUEST() {
             this.Url = global::SOAPBasicAuthInjector.Properties.Settings.Default.SOAPBasicAuthInjector_AR_CreditNote_CreditNote_CreateCredit_REQUEST;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
@@ -74,10 +74,13 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         public event CreditNoteOPCompletedEventHandler CreditNoteOPCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:PNMSoft_AR_CreditData/createCredit", OneWay=true, Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
-        public void CreditNoteOP([System.Xml.Serialization.XmlArrayAttribute(Namespace="http://www.gnp.Pnmsoft_ARCreditData.com")] [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)] CreditNoteRequest[] CreditNote) {
-            this.Invoke("CreditNoteOP", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:PNMSoftCreditNoteData/CreditNoteOP", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlArrayAttribute("CreditData", Namespace="http://www.gnp.Pnmsoft_ARCreditData.com")]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public CreditNoteResponse[] CreditNoteOP([System.Xml.Serialization.XmlArrayAttribute(Namespace="http://www.gnp.Pnmsoft_ARCreditData.com")] [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)] CreditNoteRequest[] CreditNote) {
+            object[] results = this.Invoke("CreditNoteOP", new object[] {
                         CreditNote});
+            return ((CreditNoteResponse[])(results[0]));
         }
         
         /// <remarks/>
@@ -97,7 +100,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         private void OnCreditNoteOPOperationCompleted(object arg) {
             if ((this.CreditNoteOPCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CreditNoteOPCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.CreditNoteOPCompleted(this, new CreditNoteOPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -136,11 +139,11 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         
         private string batchSourceNameField;
         
-        private System.DateTime conversionDateField;
+        private System.Nullable<System.DateTime> conversionDateField;
         
         private bool conversionDateFieldSpecified;
         
-        private double conversionRateField;
+        private System.Nullable<double> conversionRateField;
         
         private bool conversionRateFieldSpecified;
         
@@ -172,7 +175,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         
         private string linkToLineContextField;
         
-        private double linkToLineIdField;
+        private System.Nullable<double> linkToLineIdField;
         
         private bool linkToLineIdFieldSpecified;
         
@@ -200,7 +203,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         
         private string taxCodeField;
         
-        private double taxRateField;
+        private System.Nullable<double> taxRateField;
         
         private bool taxRateFieldSpecified;
         
@@ -208,13 +211,14 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         
         private System.DateTime trxDateField;
         
-        private double unitSellingPriceField;
+        private System.Nullable<double> unitSellingPriceField;
         
         private bool unitSellingPriceFieldSpecified;
         
         private string uomCodeField;
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AccountingRuleName {
             get {
                 return this.accountingRuleNameField;
@@ -235,6 +239,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AmountIncludesTaxFlag {
             get {
                 return this.amountIncludesTaxFlagField;
@@ -255,8 +260,8 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
-        public System.DateTime ConversionDate {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
+        public System.Nullable<System.DateTime> ConversionDate {
             get {
                 return this.conversionDateField;
             }
@@ -277,7 +282,8 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
-        public double ConversionRate {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ConversionRate {
             get {
                 return this.conversionRateField;
             }
@@ -298,6 +304,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string ConversionType {
             get {
                 return this.conversionTypeField;
@@ -410,6 +417,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LinkToLineAttribute1 {
             get {
                 return this.linkToLineAttribute1Field;
@@ -420,6 +428,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LinkToLineAttribute2 {
             get {
                 return this.linkToLineAttribute2Field;
@@ -430,6 +439,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LinkToLineContext {
             get {
                 return this.linkToLineContextField;
@@ -440,7 +450,8 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
-        public double LinkToLineId {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> LinkToLineId {
             get {
                 return this.linkToLineIdField;
             }
@@ -522,6 +533,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string ReasonCode {
             get {
                 return this.reasonCodeField;
@@ -572,6 +584,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string TaxCode {
             get {
                 return this.taxCodeField;
@@ -582,7 +595,8 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
-        public double TaxRate {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> TaxRate {
             get {
                 return this.taxRateField;
             }
@@ -624,7 +638,8 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
-        public double UnitSellingPrice {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> UnitSellingPrice {
             get {
                 return this.unitSellingPriceField;
             }
@@ -645,6 +660,7 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string UomCode {
             get {
                 return this.uomCodeField;
@@ -656,8 +672,75 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.gnp.Pnmsoft_ARCreditData.com")]
+    public partial class CreditNoteResponse {
+        
+        private string statusField;
+        
+        private string reasonField;
+        
+        private string interfaceLineAttribute1Field;
+        
+        /// <remarks/>
+        public string Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Reason {
+            get {
+                return this.reasonField;
+            }
+            set {
+                this.reasonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute1 {
+            get {
+                return this.interfaceLineAttribute1Field;
+            }
+            set {
+                this.interfaceLineAttribute1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void CreditNoteOPCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void CreditNoteOPCompletedEventHandler(object sender, CreditNoteOPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CreditNoteOPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CreditNoteOPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CreditNoteResponse[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CreditNoteResponse[])(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

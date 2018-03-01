@@ -61,11 +61,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\AR_CreateInvoiceTest\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="Web References\AR_CreateInvoice\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,6 +97,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="key.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -112,18 +108,19 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\AR_CreateInvoiceTest\InvoiceData.datasource">
+    <None Include="Web References\AR_CreateInvoice\InvoiceDataResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\AR_CreateInvoiceTest\item.wsdl" />
-    <None Include="Web References\AR_CreateInvoiceTest\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <None Include="Web References\AR_CreateInvoice\item.wsdl">
+      <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\AR_CreateInvoice\item.wsdl" />
     <None Include="Web References\AR_CreateInvoice\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\AR_CreditNote\CreditNoteResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\AR_CreditNote\item.wsdl" />
     <None Include="Web References\AR_CreditNote\Reference.map">
@@ -179,10 +176,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SOAPBasicAuthInjector_AP_CreateCase_Create_Case_From_PNMSoft_Akritiv_REQUESTPortType_CreateCase_REQUEST</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_CREDIT_INTEGRATION/v01/%3fwsdl">
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREDITNO_INTEGRAT/v01/%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AR_CreditNote\</RelPath>
-      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_CREDIT_INTEGRATION/v01/%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREDITNO_INTEGRAT/v01/%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -190,10 +187,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SOAPBasicAuthInjector_AR_CreditNote_CreditNote_CreateCredit_REQUEST</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_INVOICE_INTEGRAT/v01/%3fwsdl">
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREATEIN_INTEGRAT/v01/%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AR_CreateInvoice\</RelPath>
-      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AR_INVOICE_INTEGRAT/v01/%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREATEIN_INTEGRAT/v01/%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -211,17 +208,6 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SOAPBasicAuthInjector_AR_GetOutstandingAmount_GetInvoiceStatus_Invoice_Status_REQUEST</CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_TEST_INTEGRATIO/v01/%3fwsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\AR_CreateInvoiceTest\</RelPath>
-      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_TEST_INTEGRATIO/v01/%3fwsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>SOAPBasicAuthInjector_AR_CreateInvoiceTest_InoviceData_PNMTest_REQUEST</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/SOAP_SERVICE/v01/%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>

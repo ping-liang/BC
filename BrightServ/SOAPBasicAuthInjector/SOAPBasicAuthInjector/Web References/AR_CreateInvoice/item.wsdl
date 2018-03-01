@@ -27,40 +27,40 @@
     <xsd:schema xmlns="http://www.gnp.pnmsoft_arInvoice.com" elementFormDefault="qualified" targetNamespace="http://www.gnp.pnmsoft_arInvoice.com">
       <xsd:complexType name="InvoiceDataRequest">
         <xsd:sequence>
-          <xsd:element minOccurs="0" name="AccountingRuleName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AccountingRuleName" nillable="true" type="xsd:string" />
           <xsd:element name="Amount" type="xsd:double" />
-          <xsd:element minOccurs="0" name="AmountIncludesTaxFlag" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AmountIncludesTaxFlag" nillable="true" type="xsd:string" />
           <xsd:element name="BatchSourceName" type="xsd:string" />
-          <xsd:element minOccurs="0" name="ConversionDate" type="xsd:date" />
-          <xsd:element minOccurs="0" name="ConversionRate" type="xsd:double" />
-          <xsd:element minOccurs="0" name="ConversionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ConversionDate" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" name="ConversionRate" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" name="ConversionType" nillable="true" type="xsd:string" />
           <xsd:element name="CurrencyCode" type="xsd:string" />
           <xsd:element name="CustTrxTypeName" type="xsd:string" />
           <xsd:element name="Description" type="xsd:string" />
-          <xsd:element name="GLDate" type="xsd:date" />
+          <xsd:element name="GLDate" nillable="true" type="xsd:date" />
           <xsd:element name="InterfaceLineAttribute1" type="xsd:string" />
           <xsd:element name="InterfaceLineAttribute2" type="xsd:string" />
           <xsd:element name="InterfaceLineAttribute3" type="xsd:string" />
           <xsd:element name="InterfaceLineContext" type="xsd:string" />
-          <xsd:element minOccurs="0" name="InvoicingRuleName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="InvoicingRuleName" nillable="true" type="xsd:string" />
           <xsd:element name="LineNumber" type="xsd:integer" />
           <xsd:element name="LineType" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineAttribute1" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineAttribute2" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineContext" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineId" type="xsd:integer" />
-          <xsd:element minOccurs="0" name="MemoLineName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineAttribute1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineAttribute2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineContext" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineId" nillable="true" type="xsd:integer" />
+          <xsd:element minOccurs="0" name="MemoLineName" nillable="true" type="xsd:string" />
           <xsd:element name="OrigSystemBillAddressRef" type="xsd:string" />
           <xsd:element name="OrigSystemBillCustomerRef" type="xsd:string" />
           <xsd:element name="OrigSystemShipAddressRef" type="xsd:string" />
           <xsd:element name="OrigSystemShipCustomerRef" type="xsd:string" />
           <xsd:element name="OrigSystemSoldCustomerRef" type="xsd:string" />
           <xsd:element name="Quantity" type="xsd:double" />
-          <xsd:element minOccurs="0" name="TaxCode" type="xsd:string" />
-          <xsd:element minOccurs="0" name="TaxRate" type="xsd:double" />
+          <xsd:element minOccurs="0" name="TaxCode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TaxRate" nillable="true" type="xsd:double" />
           <xsd:element name="TermName" type="xsd:string" />
           <xsd:element name="TrxDate" type="xsd:date" />
-          <xsd:element minOccurs="0" name="UnitSellingPrice" type="xsd:double" />
+          <xsd:element minOccurs="0" name="UnitSellingPrice" nillable="true" type="xsd:double" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element name="Invoice">
@@ -71,6 +71,29 @@
                 <xsd:documentation>Document to create Invoice data from PNMSoft_AR</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="InvoiceDataResponse">
+        <xsd:sequence>
+          <xsd:element name="Status" type="xsd:string" />
+          <xsd:element name="Reason" type="xsd:string" />
+          <xsd:element name="InterfaceLineAttribute1" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="InvoiceData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="InvoiceDataResponse" type="psarid:InvoiceDataResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InvoiceDataFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ErrorCode" type="xsd:string" />
+            <xsd:element name="ErrorReason" type="xsd:string" />
+            <xsd:element name="ErrorDescription" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -115,24 +138,35 @@
   <wsdl:message name="InoviceData_Invoice">
     <wsdl:part name="part" element="psarid:Invoice" />
   </wsdl:message>
-  <wsdl:portType name="InoviceData_createInvoice_REQUEST">
+  <wsdl:message name="InoviceData_InvoiceData">
+    <wsdl:part name="part" element="psarid:InvoiceData" />
+  </wsdl:message>
+  <wsdl:message name="InoviceData_InvoiceDataFault">
+    <wsdl:part name="part" element="psarid:InvoiceDataFault" />
+  </wsdl:message>
+  <wsdl:portType name="InoviceData_InsertInvoice_REQUEST">
     <wsdl:operation name="InsertInvoiceData">
       <wsdl:input message="tns:InoviceData_Invoice" />
+      <wsdl:output message="tns:InoviceData_InvoiceData" />
+      <wsdl:fault name="InvoiceFault" message="tns:InoviceData_InvoiceDataFault" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="InoviceData_createInvoice_REQUEST_binding" type="tns:InoviceData_createInvoice_REQUEST">
+  <wsdl:binding name="InoviceData_InsertInvoice_REQUEST_binding" type="tns:InoviceData_InsertInvoice_REQUEST">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#http_basic_auth_over_ssl_service_policy" wsdl:required="false" />
     <wsdl:operation name="InsertInvoiceData">
-      <soap:operation soapAction="urn:PNMSoft_AR_InvoiceData/createInvoice" />
+      <soap:operation soapAction="InsertInvoiceData" />
       <wsdl:input>
         <soap:body use="literal" parts="part" />
       </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="part" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="InoviceData_createInvoice_REQUEST">
-    <wsdl:port name="InoviceData_createInvoice_REQUEST_pt" binding="tns:InoviceData_createInvoice_REQUEST_binding">
-      <soap:address location="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_INVOICE_INTEGRAT/v01/" />
+  <wsdl:service name="InoviceData_InsertInvoice_REQUEST">
+    <wsdl:port name="InoviceData_InsertInvoice_REQUEST_pt" binding="tns:InoviceData_InsertInvoice_REQUEST_binding">
+      <soap:address location="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREATEIN_INTEGRAT/v01/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

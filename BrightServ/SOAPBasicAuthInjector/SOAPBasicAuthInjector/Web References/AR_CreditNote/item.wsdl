@@ -27,13 +27,13 @@
     <xsd:schema xmlns="http://www.gnp.Pnmsoft_ARCreditData.com" elementFormDefault="qualified" targetNamespace="http://www.gnp.Pnmsoft_ARCreditData.com">
       <xsd:complexType name="CreditNoteRequest">
         <xsd:sequence>
-          <xsd:element minOccurs="0" name="AccountingRuleName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AccountingRuleName" nillable="true" type="xsd:string" />
           <xsd:element name="Amount" type="xsd:double" />
-          <xsd:element minOccurs="0" name="AmountIncludesTaxFlag" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AmountIncludesTaxFlag" nillable="true" type="xsd:string" />
           <xsd:element name="BatchSourceName" type="xsd:string" />
-          <xsd:element minOccurs="0" name="ConversionDate" type="xsd:date" />
-          <xsd:element minOccurs="0" name="ConversionRate" type="xsd:double" />
-          <xsd:element minOccurs="0" name="ConversionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ConversionDate" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" name="ConversionRate" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" name="ConversionType" nillable="true" type="xsd:string" />
           <xsd:element minOccurs="1" name="CurrencyCode" type="xsd:string" />
           <xsd:element name="CustTrxTypeName" type="xsd:string" />
           <xsd:element name="Description" type="xsd:string" />
@@ -44,27 +44,27 @@
           <xsd:element name="InterfaceLineContext" type="xsd:string" />
           <xsd:element name="LineNumber" type="xsd:integer" />
           <xsd:element name="LineType" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineAttribute1" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineAttribute2" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineContext" type="xsd:string" />
-          <xsd:element minOccurs="0" name="LinkToLineId" type="xsd:double" />
+          <xsd:element minOccurs="0" name="LinkToLineAttribute1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineAttribute2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineContext" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LinkToLineId" nillable="true" type="xsd:double" />
           <xsd:element name="OrigSystemBillAddressRef" type="xsd:string" />
           <xsd:element name="OrigSystemBillCustomerRef" type="xsd:string" />
           <xsd:element name="OrigSystemShipAddressRef" type="xsd:string" />
           <xsd:element name="OrigSystemShipCustomerRef" type="xsd:string" />
           <xsd:element name="OrigSystemSoldCustomerRef" type="xsd:string" />
           <xsd:element name="Quantity" type="xsd:integer" />
-          <xsd:element minOccurs="0" name="ReasonCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ReasonCode" nillable="true" type="xsd:string" />
           <xsd:element name="ReferenceLineAttribute1" type="xsd:string" />
           <xsd:element name="ReferenceLineAttribute2" type="xsd:string" />
           <xsd:element name="ReferenceLineAttribute3" type="xsd:string" />
           <xsd:element name="ReferenceLineContext" type="xsd:string" />
-          <xsd:element minOccurs="0" name="TaxCode" type="xsd:string" />
-          <xsd:element minOccurs="0" name="TaxRate" type="xsd:double" />
+          <xsd:element minOccurs="0" name="TaxCode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TaxRate" nillable="true" type="xsd:double" />
           <xsd:element name="TermName" type="xsd:string" />
           <xsd:element name="TrxDate" type="xsd:date" />
-          <xsd:element minOccurs="0" name="UnitSellingPrice" type="xsd:double" />
-          <xsd:element minOccurs="0" name="UomCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="UnitSellingPrice" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" name="UomCode" nillable="true" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element name="CreditNote">
@@ -75,6 +75,29 @@
                 <xsd:documentation>A sample element</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CreditNoteResponse">
+        <xsd:sequence>
+          <xsd:element name="Status" type="xsd:string" />
+          <xsd:element name="Reason" type="xsd:string" />
+          <xsd:element name="InterfaceLineAttribute1" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="CreditData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="CreditNoteResponse" type="types:CreditNoteResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreditDataFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ErrorCode" type="xsd:string" />
+            <xsd:element name="ErrorReason" type="xsd:string" />
+            <xsd:element name="ErrorDescription" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -119,24 +142,35 @@
   <wsdl:message name="CreditNote_CreditNote">
     <wsdl:part name="part" element="types:CreditNote" />
   </wsdl:message>
-  <wsdl:portType name="CreditNote_CreateCredit_REQUEST">
+  <wsdl:message name="CreditNote_CreditData">
+    <wsdl:part name="part" element="types:CreditData" />
+  </wsdl:message>
+  <wsdl:message name="CreditNote_CreditDataFault">
+    <wsdl:part name="part" element="types:CreditDataFault" />
+  </wsdl:message>
+  <wsdl:portType name="CreditNote_CreditNote_REQUEST">
     <wsdl:operation name="CreditNoteOP">
       <wsdl:input message="tns:CreditNote_CreditNote" />
+      <wsdl:output message="tns:CreditNote_CreditData" />
+      <wsdl:fault name="CreditFault" message="tns:CreditNote_CreditDataFault" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="CreditNote_CreateCredit_REQUEST_binding" type="tns:CreditNote_CreateCredit_REQUEST">
+  <wsdl:binding name="CreditNote_CreditNote_REQUEST_binding" type="tns:CreditNote_CreditNote_REQUEST">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#http_basic_auth_over_ssl_service_policy" wsdl:required="false" />
     <wsdl:operation name="CreditNoteOP">
-      <soap:operation soapAction="urn:PNMSoft_AR_CreditData/createCredit" />
+      <soap:operation soapAction="urn:PNMSoftCreditNoteData/CreditNoteOP" />
       <wsdl:input>
         <soap:body use="literal" parts="part" />
       </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="part" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="CreditNote_CreateCredit_REQUEST">
-    <wsdl:port name="CreditNote_CreateCredit_REQUEST_pt" binding="tns:CreditNote_CreateCredit_REQUEST_binding">
-      <soap:address location="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREDIT_INTEGRATION/v01/" />
+  <wsdl:service name="CreditNote_CreditNote_REQUEST">
+    <wsdl:port name="CreditNote_CreditNote_REQUEST_pt" binding="tns:CreditNote_CreditNote_REQUEST_binding">
+      <soap:address location="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREDITNO_INTEGRAT/v01/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
