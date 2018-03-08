@@ -93,6 +93,17 @@ namespace SOAPBasicAuthInjector.AP_CreateCase
 	}
 }
 
+namespace SOAPBasicAuthInjector.AP_UpdateCase
+{
+	public partial class UpdateInvoicePNMSoft_RequestPortType_UpdateInvoiceResponse_REQUEST
+	{
+		protected override WebRequest GetWebRequest(Uri uri)
+		{
+			return CommonOverride.WebRequestCustom.GetWebRequestCustom((HttpWebRequest)base.GetWebRequest(uri), Credentials.GetCredential(uri, "Basic"));
+		}
+	}
+}
+
 
 
 

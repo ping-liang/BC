@@ -91,5 +91,17 @@ namespace SOAPBasicAuthInjector.Properties {
                     "ype_CreateCase_REQUEST"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integ" +
+            "ration/flowsvc/soap/PNMSOFT_AKRITIV_UPDATECA_INTEGRA/v01/")]
+        public string SOAPBasicAuthInjector_AP_UpdateCase_UpdateInvoicePNMSoft_RequestPortType_UpdateInvoiceResponse_REQUEST {
+            get {
+                return ((string)(this["SOAPBasicAuthInjector_AP_UpdateCase_UpdateInvoicePNMSoft_RequestPortType_UpdateIn" +
+                    "voiceResponse_REQUEST"]));
+            }
+        }
     }
 }

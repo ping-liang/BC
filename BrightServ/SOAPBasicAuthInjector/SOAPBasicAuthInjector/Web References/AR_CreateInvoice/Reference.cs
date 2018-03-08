@@ -74,7 +74,7 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         public event InsertInvoiceDataCompletedEventHandler InsertInvoiceDataCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("InsertInvoiceData", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:PNMSoftARInsertInvoiceData/InsertInvoiceData", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
         [return: System.Xml.Serialization.XmlArrayAttribute("InvoiceData", Namespace="http://www.gnp.pnmsoft_arInvoice.com")]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public InvoiceDataResponse[] InsertInvoiceData([System.Xml.Serialization.XmlArrayAttribute(Namespace="http://www.gnp.pnmsoft_arInvoice.com")] [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)] InvoiceDataRequest[] Invoice) {

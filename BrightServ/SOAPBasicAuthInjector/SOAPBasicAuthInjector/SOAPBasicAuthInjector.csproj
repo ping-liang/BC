@@ -61,6 +61,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\AP_UpdateCase\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\AR_CreateInvoice\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +112,14 @@
     <None Include="Web References\AP_CreateCase\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AP_UpdateCase\item.wsdl" />
+    <None Include="Web References\AP_UpdateCase\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AP_UpdateCase\UpdateInvoiceServiceUpdateInvoiceResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\AR_CreateInvoice\InvoiceDataResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -175,6 +188,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SOAPBasicAuthInjector_AP_CreateCase_Create_Case_From_PNMSoft_Akritiv_REQUESTPortType_CreateCase_REQUEST</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AKRITIV_UPDATECA_INTEGRA/v01/%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AP_UpdateCase\</RelPath>
+      <UpdateFromURL>https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com/integration/flowsvc/soap/PNMSOFT_AKRITIV_UPDATECA_INTEGRA/v01/%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SOAPBasicAuthInjector_AP_UpdateCase_UpdateInvoicePNMSoft_RequestPortType_UpdateInvoiceResponse_REQUEST</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AR_CREDITNO_INTEGRAT/v01/%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>

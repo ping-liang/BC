@@ -20,5 +20,8 @@
     <Setting Name="SOAPBasicAuthInjector_AP_CreateCase_Create_Case_From_PNMSoft_Akritiv_REQUESTPortType_CreateCase_REQUEST" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AKRITIV_CREATECA_INTEGRA/v01/</Value>
     </Setting>
+    <Setting Name="SOAPBasicAuthInjector_AP_UpdateCase_UpdateInvoicePNMSoft_RequestPortType_UpdateInvoiceResponse_REQUEST" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://genpacticsinstancedev01-a432914.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PNMSOFT_AKRITIV_UPDATECA_INTEGRA/v01/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

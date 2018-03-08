@@ -155,7 +155,7 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#http_basic_auth_over_ssl_service_policy" wsdl:required="false" />
     <wsdl:operation name="InsertInvoiceData">
-      <soap:operation soapAction="InsertInvoiceData" />
+      <soap:operation soapAction="urn:PNMSoftARInsertInvoiceData/InsertInvoiceData" />
       <wsdl:input>
         <soap:body use="literal" parts="part" />
       </wsdl:input>
