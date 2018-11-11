@@ -1,0 +1,779 @@
+<%@ Control %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- ======== Custom Script Section Start ======== -->
+<script type="text/javascript">
+  /***** ======== Back To Queue Button Function Section Start ======== *****/
+  function BackToQueue(sender, args) {
+    $findByControlId("chkBackToQueue").set_checked(true);    
+  }
+  /***** ======== Back To Queue Button Function Section End ========  *****/
+
+  /***** ======== Discard Button Function Section Start ========  *****/
+  function Discard(sender, args) {
+    //debugger;
+    $findByControlId("chkDiscard").set_checked(true);
+  }
+  /*****- ======== Discard Button Function Section End ========  *****/
+  
+  /***** ======== Create New Customer Button Function Section Start ======== *****/
+  function CreateNewCustomer(sender, args) {
+    $findByControlId("chkCreateNewCustomer").set_checked(true);
+  }
+  /***** ======== Create New Customer Button Function Section Start ======== *****/
+
+  /***** ======== Create New Claim Button Function Section End ======== *****/
+  function CreateNewClaim(sender, args) {
+    $findByControlId("chkCreateNewClaim").set_checked(true);
+  }
+  /***** ======== Create New Claim Button Function Section End ======== *****/
+
+  /***** ======== Create New Assignment Button Function Section Start ======== *****/
+  function CreateNewAssignment(sender, args) {
+    $findByControlId("chkCreateNewAssignment").set_checked(true);
+  }
+  /***** ======== Create New Assignment Button Function Section End ======== *****/
+
+  /***** ======== Select Assignment Button Function Section Start ======== *****/
+  function SelectThisAssignment(sender, args) {
+    $findByControlId("chkSelectThisAssignment").set_checked(true);
+  }
+  /***** ======== Select Assignment Button Function Section End ======== *****/
+
+  function HideUnhide(sender, args) {
+    //alert("A");
+  }
+
+  /***** ======== Clear Button Function Section Start ======== *****/
+  function Clear(sender, args) {
+    var elements = document.getElementsByTagName("input");
+    for (var i = 0; i < elements.length; i++) {
+      var elemType = elements[i].type.toLowerCase();
+      if (elemType == "text" || elemType == "number" || elemType == "tel") {
+        elements[i].value = "";
+      }
+      else
+      {
+        //debugger;
+      }
+    }
+
+    $findByControlId("rbAccountType").clear();
+    $findByControlId("cmbState").clearSelection();
+    $findByControlId("cmbAssignmentType").clearSelection();
+    $findByControlId("cmbClient").clearSelection();
+  }
+  /***** ======== Clear Button Function Section End ======== *****/
+  function docFileGridOnRowCreated(sender, eventArgs) { } 
+  function docFileGridOnRowCreating(sender, eventArgs) { }
+
+  function ProcessCustomer(sender, eventArgs) 
+  {
+    /*
+    alert(
+      eventArgs.get_gridDataItem().getDataKeyValue("CustomerId")
+      + " " + eventArgs.get_gridDataItem().getDataKeyValue("ClaimId")
+      + " " + eventArgs.get_gridDataItem().getDataKeyValue("RequestID")
+    );
+
+*/
+    $findByControlId("intSelectedCustomerId").set_value(eventArgs.get_gridDataItem().getDataKeyValue("CustomerId"));
+    $findByControlId("intSelectedClaimId").set_value(eventArgs.get_gridDataItem().getDataKeyValue("ClaimId"));
+    $findByControlId("intSelectedAssignmentId").set_value(eventArgs.get_gridDataItem().getDataKeyValue("RequestID"));
+
+    //Conditionally enable buttons when a row is selected
+    //debugger;
+    $findByControlId("btnCreateNewClaim").set_enabled(true);   
+
+    if (eventArgs.get_gridDataItem().getDataKeyValue("ClaimId") != null && eventArgs.get_gridDataItem().getDataKeyValue("ClaimId") >= 0) {
+      /**/$findByControlId("btnCreateNewAssignment").set_enabled(true);
+    }
+
+    else
+    {
+      /**/$findByControlId("btnCreateNewAssignment").set_enabled(false);
+    }
+
+    /*
+    debugger;
+    var realSubmit = $findByControlId("RealSubmitButton");
+    realSubmit.click(true);
+    */
+  }
+
+  var modal = null;
+  function showSelectionDialog(url){
+    if(modal ==  null){
+      modal = $find($sq('[id$="modalPopup"]')[0].id);
+    }
+    modal.setUrl(url);
+    modal.show();
+
+    //Hide RadWindow status bar
+    $(".rwStatusBar").hide();    
+  }
+
+  function onModalClose(sender, args){  
+    if (modal){
+      modal.setUrl("");
+    }
+
+    //Rebind the search result grid
+    if (window.parent){
+      var searchResultsGrid = getElementById("USP_CustomerSearchGridView");
+      var masterTable = searchResultsGrid.get_masterTableView();
+      masterTable.rebind();
+    }
+  }
+
+  function showEditCustomer(customerId){
+    var editCustomerUrl = START_EDIT_CUSTOMER_WORKFLOW_URL + "&customerId=" + customerId
+    //alert(editCustomerUrl);
+    showSelectionDialog(editCustomerUrl);
+  }
+  //Check whether user selected Commercial type
+  function isCommercialType(){
+    var selectedCustomerType = $('input[id*="rbAccountType"]:checked').val();
+    if (selectedCustomerType){
+      selectedCustomerType = selectedCustomerType.toUpperCase();
+    }
+    return (selectedCustomerType == "COMMERCIAL");
+  }
+
+  //Only display Company Name if Customer Type is "COMMERCIAL"
+  function showOrHideCompanyName(){
+    if(isCommercialType()){
+      $("#CompanyName").show();
+    }
+    else {
+      $("#CompanyName").hide();
+    }
+  }
+
+
+  //Open the last activity instance of the assignment
+  function showAssignment(fldMasterIWfId)
+  {
+    var url = RUNTIME_URL + "&workflowInstanceId=" + fldMasterIWfId;
+    //alert(url);
+    window.open(url);
+  }
+
+  function onCustomerTypeChanged(sender, eventArgs){
+    showOrHideCompanyName();
+  }
+
+  $(document).ready(function() {
+    showOrHideCompanyName();
+
+    //Remove Process Wall link and icon from top bar
+    $("table.weTopBarLinksContainer td:contains('Process Wall')").text("");
+  });
+
+  /***** ============ Movable PopUp Function Section Start ========== *****/
+  $(function() {
+    $("#modalPopup").draggable();
+  });
+  /***** ============ Movable PopUp Function Section End ========== *****/
+
+</script>
+
+<sq8:SubView runat="server" ID="SubView_Javascript" VirtualPath="../../../Common Components/{active}/CommonForms/Javascript.ascx"></sq8:SubView>
+<!-- ======== Custom Script Section End ======== -->
+
+<!-- ======== HTML Section Start ======== -->
+
+<!-- ======== Main Layout Section Start ======== -->
+<div class="sqf-layout" style="margin-bottom:0px;">
+  <div class="sqf-layout-row sqf-placeholder" style="padding-bottom:0px;margin-bottom:0px;">
+    <sq8:Form runat="server" ID="Search" DataSourceID="SearchDataSource" DataKeyNames="fldId" RenderMode="PlaceHolder"><ContentTemplate>
+      <asp:UpdatePanel runat="server" ID="All"><ContentTemplate>
+        <div class="sqf-section">
+          <div class="sqf-row">
+            <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v" style="padding:0px;">
+              <div class="sqf-section" ID="customerSearchSection" style="padding:0px 13px;">
+                <div class="panel">
+                  <!-- ======== Panel Header Section Start ======== -->
+                  <div class="panel-heading" data-toggle="collapse" href="#collapseCustomerSaecrh">
+                    <h2 class="panel-title"><sq8:Text runat="server" ID="customerSearchLabel" Text="Customer Search"></sq8:Text></h2>
+                  </div>
+                  <!-- ======== Panel Header Section End ======== -->
+                  <div class="panel-collapse collapse in" style="padding:4px 10px 10px;" ID="collapseCustomerSaecrh">
+                    <div class="panel-body" style="padding-bottom:0px;">
+                      <div class="sqf-row">
+                        <!-- ======== Customer Type Section Start ======== -->
+                        <div class="sqf-col-xs-12 sqf-col-md-2 sqf-control-group-v paddingBottom">
+                          <sq8:Label runat="server" Text="Customer Type" ID="Label1"></sq8:Label>
+                        </div>
+                        <div class="sqf-col-xs-12 sqf-col-md-10 sqf-control-group-v paddingBottom" style="padding-left:0px">
+                          <sq8:DataSource runat="server" ID="DataSource2" QueryName="ref:ns0/CustomerTypes" OrderBy="OrderIndex"></sq8:DataSource>
+                          <sq8:RadioButtonList runat="server" ID="rbAccountType" OnClientSelectedIndexChanged="showOrHideCompanyName" DataSourceID="DataSource2" DataTextField="Description" DataValueField="Code" RepeatDirection="Horizontal"></sq8:RadioButtonList>
+                          <sq:BindableControl runat="server" TargetControlID="rbAccountType" DataField="rbCustomerType"></sq:BindableControl>
+                        </div>
+                        <!-- ======== Customer Type Section End ======== -->
+                      </div>
+                      <div class="sqf-col-xs-12 sqf-col-md-12 paddingBottom" style="padding-left:0px">
+                        <hr style="margin-top:0px;border-top: 1px solid #e1e8eb;margin-bottom:0px;">
+                      </div>
+
+                      <div class="sqf-col-xs-12 sqf-col-md-3 customCol" style="border-right: 1px solid #ddd;padding-left:0px">
+                        <div class="sqf-row">
+                          <!-- ========== Company Name Section Start ========== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v" id="CompanyName" style="display:none">
+                            <sq8:Label runat="server" Text="Company Name" ID="lblCompanyName"></sq8:Label>
+                            <sq8:TextBox runat="server" ID="txtCompanyName" MaxLength="100" Width="100%" ></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtCompanyName" DataField="txtCompanyName"></sq:BindableControl>
+
+                          </div>
+                          <!-- ========== Company Name Section End ========== -->
+
+                          <!-- ======== Customer First Name Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="First Name" />
+                            <sq8:TextBox runat="server" ID="txtFirstName" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtFirstName" DataField="txtFirstName"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer First Name Section End ======== -->
+
+                          <!-- ======== Customer Last Name Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Last Name" ID="Label2"></sq8:Label>
+                            <sq8:TextBox runat="server" ID="txtLastName" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtLastName" DataField="txtLastName"></sq:BindableControl>
+
+                          </div>
+                          <!-- ======== Customer Last Name Section End ======== -->
+
+                          <!-- ======== Customer Home Phone Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Phone" />
+                            <sq8:TextBox runat="server" ID="txtHomePhone" Width="100%" InputType="Tel"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtHomePhone" DataField="txtHomePhone"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer Home Phone Section End ======== -->
+
+                          <!-- ======== Customer Email Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Email" />
+                            <sq8:TextBox runat="server" ID="txtEmail" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtEmail" DataField="txtEmail"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer Email Section End ======== -->
+                        </div>
+                      </div>
+                      <div class="sqf-col-xs-12 sqf-col-md-3 customCol" style="border-right: 1px solid #ddd">
+
+                        <div class="sqf-row">
+                          <!-- ======== Customer Street Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Street" ID="Label5"></sq8:Label>
+                            <sq8:TextBox runat="server" ID="txtStreet" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtStreet" DataField="txtStreet"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer Street Section End ======== -->
+
+                          <!-- ======== Customer City Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="City" ID="Label6"></sq8:Label>
+                            <sq8:TextBox runat="server" ID="txtCity" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtCity" DataField="txtCity"></sq:BindableControl>
+                            <asp:RegularExpressionValidator runat="server" ErrorMessage="Please enter alphabets only" ID="revCity" ValidationExpression="^[a-zA-Z.\s]+$" ValidationGroup="DataValidation" ControlToValidate="txtCity" Display="Dynamic" Font-Size="12px" ForeColor="#FB836F"></asp:RegularExpressionValidator>
+                          </div>
+                          <!-- ======== Customer City Section End ======== -->
+
+                          <!-- ======== Customer State Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="State" />
+                            <sq8:DataSource runat="server" ID="DataSource1" QueryName="ref:ns0/States" OrderBy="Name"></sq8:DataSource>
+                            <sq8:ComboBox runat="server" ID="cmbState" AutoInsertEmptyItem="True" DataSourceID="DataSource1" DataValueField="Code" DataTextField="Name" Filter="Contains" Width="100%" AllowCustomFiltering="False"></sq8:ComboBox>
+                            <sq:BindableControl runat="server" TargetControlID="cmbState" DataField="cmbState"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer State Section End ======== -->
+
+                          <!-- ======== Customer Zip Code Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Zip Code" />
+                            <sq8:TextBox runat="server" ID="txtZip" Width="100%" InputType="Number"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtZip" DataField="txtZip"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer Zip Code Section End ======== -->
+                        </div>
+                      </div>
+                      <div class="sqf-col-xs-12 sqf-col-md-3 customCol">
+                        <div class="sqf-row">
+                          <!-- ======== Customer Work Phone Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v" style="display:none">
+                            <sq8:Label runat="server" Text="Work Phone" />
+                            <sq8:TextBox runat="server" ID="txtWorkPhone" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtWorkPhone" DataField="txtWorkPhone"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer Work Phone Section End ======== -->
+
+                          <!-- ======== Customer Client Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Client" ID="Label7"></sq8:Label>
+                            <sq8:DataSource runat="server" ID="cmbClientDataSource"  QueryName="ref:ns0/Clients"  Where="StatusCode == @StatusCode" OrderBy="Name"><WhereParameters>
+                              <sq:ExpressionParameter Expression="&quot;A&quot;" Name="StatusCode"></sq:ExpressionParameter>
+                              </WhereParameters>
+                            </sq8:DataSource>
+                            <sq8:ComboBox runat="server" ID="cmbClient" AutoInsertEmptyItem="True" DataSourceID="cmbClientDataSource"    
+                                          DataTextField="Name" DataValueField="fldId" ItemsPerRequest="50" ShowMoreResultsBox="True"  Filter="Contains" Width="100%"></sq8:ComboBox>
+                            <sq:BindableControl runat="server" TargetControlID="cmbClient" DataField="cmbClient"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Customer Client Section End ======== -->
+
+                          <!-- ======== Assignment Type Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Assignment Type" ID="Label3"></sq8:Label>
+                            <sq8:DataSource runat="server" ID="cmbAssignmentTypeDataSource" QueryName="ref:ns0/AssignmentTypes"  OrderBy="OrderIndex"></sq8:DataSource>
+                            <sq8:ComboBox runat="server" ID="cmbAssignmentType"  AutoInsertEmptyItem="True" DataSourceID="cmbAssignmentTypeDataSource"    
+                                          DataTextField="Description" DataValueField="Code" Filter="Contains" Width="100%"></sq8:ComboBox>
+                            <sq:BindableControl runat="server" TargetControlID="cmbAssignmentType" DataField="cmbAssignmentType"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Assignment Type Section End ======== -->
+
+                          <!-- ======== Claim Number Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Claim Number" ID="Label4"></sq8:Label>
+                            <sq8:TextBox runat="server" ID="txtClaimNumber" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="txtClaimNumber" DataField="txtClaimNumber"></sq:BindableControl>
+                          </div>
+                          <!-- ======== Claim Number Section End ======== -->
+                        </div>
+                      </div>
+                      <div class="sqf-col-xs-12 sqf-col-md-3 customCol">
+                        <div class="sqf-row">
+                          <!-- ======== Assignment Number Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Assignment ID" ID="Label10"></sq8:Label>
+                            <sq8:TextBox runat="server" ID="intAssignmentID" Width="100%"></sq8:TextBox>
+                            <sq:BindableControl runat="server" TargetControlID="intAssignmentID" DataField="intAssignmentID"></sq:BindableControl>
+
+                          </div>
+                          <!-- ======== Assignment Number Section End ======== -->
+
+                          <!-- ======== Assignment Date Range Section Start ======== -->
+                          <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v">
+                            <sq8:Label runat="server" Text="Assignment Date Range" ID="Label8"/>
+                            <div class="input-group input-daterange">
+                              <sq8:DatePicker runat="server" ID="dateCreationDate" Width="100%" Visible="false">
+                                <DatePopupButton CssClass="rcCalPopup rcDisabled"></DatePopupButton>
+                              </sq8:DatePicker>
+                              <sq:BindableControl runat="server" TargetControlID="dateCreationDate" DataField="dateCreationDate"></sq:BindableControl>
+                              <div class="input-group-addon">to</div>
+                              <sq8:DatePicker runat="server" ID="dateToDate" Width="100%" Visible="false">
+                                <DatePopupButton CssClass="rcCalPopup rcDisabled"></DatePopupButton>
+                              </sq8:DatePicker>
+                              <sq:BindableControl runat="server" TargetControlID="dateToDate" DataField="dateToDate"></sq:BindableControl>
+                            </div>
+                          </div>
+                          <!-- ======== Assignment Date Range Section End ======== -->
+
+                          <!-- ======== Hidden Textbox Section Start ======== -->                  
+                          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+                            <sq8:NumericTextBox runat="server" ID="intSelectedCustomerId"  
+                                                DataType="System.Int64"  Display="False"></sq8:NumericTextBox>
+                            <sq:BindableControl runat="server" TargetControlID="intSelectedCustomerId" DataField="intSelectedCustomerId"></sq:BindableControl>
+                          </div>
+
+                          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+                            <sq8:NumericTextBox runat="server" ID="intSelectedClaimId"  
+                                                DataType="System.Int64"  Display="False"></sq8:NumericTextBox>
+                            <sq:BindableControl runat="server" TargetControlID="intSelectedClaimId" DataField="intSelectedClaimId"></sq:BindableControl>
+                          </div>
+                          <div class="sqf-col-xs-12 sqf-col-md-3 sqf-control-group-v">
+                            <sq8:NumericTextBox runat="server" ID="intSelectedAssignmentId"  
+                                                DataType="System.Int64"  Display="False"></sq8:NumericTextBox>
+                            <sq:BindableControl runat="server" TargetControlID="intSelectedAssignmentId" DataField="intSelectedAssignmentId"></sq:BindableControl>	
+
+
+                          </div>
+                          <!-- ======== Hidden Textbox Section End ======== -->
+                        </div>
+                      </div>
+                      <div class="sqf-row">
+                        <!-- ======== Customer Search Action Button Section Start ======== -->
+                        <div class="sqf-col-xs-12 text-center sqf-control-group-v" style="padding-bottom:0px;">          
+                          <sq8:Button runat="server" Text="Reset" CssClass="customResetBtn" OnClientClicked="Clear" UseSubmitBehavior="false" AutoPostBack="false"></sq8:Button>&nbsp;
+                          <sq8:Button runat="server" Text="Search" CssClass="customMainActionBtn" CommandName="SaveAll" CommandArgument="0" SingleClick="True" SingleClickText="Searching..."></sq8:Button>
+                        </div>
+                        <!-- ======== Customer Search Action Button Section End ======== -->                            
+                      </div>
+                    </div>
+                    <!-- ======== Customer Search Section End ======== -->
+                  </div>
+                </div>
+              </div>
+              <br>
+              <!-- ======== Customer Search Result Table Grid Section Start ======== -->
+              <div class="sqf-section" ID="customerSearchResultSection" style="padding:0px 25px;">
+                <div class="sqf-row">
+                  <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v" style="padding:0px;">
+                    <div class="sqf-section" ID="customerSearchResultSection" style="padding:0px 13px;">
+                      <div class="panel">
+                        <!-- ======== Panel Header Section Start ======== -->
+                        <div class="panel-heading" data-toggle="collapse" href="#collapseCustomerSaecrhResult">
+                          <h2 class="panel-title"><sq8:Text runat="server" ID="customerSearchResultLabel" Text="Customer Search Result"></sq8:Text></h2>
+                        </div>
+                        <!-- ======== Panel Header Section End ======== -->
+                        <div class="panel-collapse collapse in" style="padding:4px 10px 10px;" ID="collapseCustomerSaecrhResult">
+                          <div class="panel-body" style="padding-bottom:0px;">
+                            <div class="sqf-row">
+                              <div class="sqf-col-xs-12">
+                                <sq8:DataSource runat="server" ID="USP_CustomerSearchDataSource" 
+                                                QueryName="USP_CustomerSearch"></sq8:DataSource>
+                                <sq8:Grid runat="server" ID="USP_CustomerSearchGridView" DataSourceID="USP_CustomerSearchDataSource" Skin="Bootstrap" 
+                                          AutoGenerateColumns="False" GroupPanelPosition="Top" AllowSorting="True" Width="100%" PageSize="15" style="overflow-x:scroll">
+                                  <GroupingSettings ExpandAllTooltip="" CollapseAllTooltip=""></GroupingSettings>
+
+                                  <HierarchySettings ExpandAllTooltip="" CollapseAllTooltip=""></HierarchySettings>
+
+                                  <ClientSettings>
+                                    <Selecting AllowRowSelect="True"></Selecting>
+                                    <Scrolling AllowScroll="false" UseStaticHeaders="true"></Scrolling>
+                                    <ClientEvents OnGridCreated="showOrHideCompanyName" OnRowCreating="docFileGridOnRowCreating" OnRowCreated="docFileGridOnRowCreated" OnRowSelected="ProcessCustomer"></ClientEvents>
+                                  </ClientSettings>
+
+                                  <MasterTableView AllowMultiColumnSorting="true" CommandItemDisplay="None" ClientDataKeyNames="Customer,CityStateZIP,CustomerId,ClaimId,RequestID" NoMasterRecordsText="No customers were found that match the specified search criteria." DataSourceID="USP_CustomerSearchDataSource">
+                                    <CommandItemSettings PrevFrozenColumnText="" ShowAddNewRecordButton="False" ShowRefreshButton="False"></CommandItemSettings>
+
+                                    <RowIndicatorColumn FilterControlAltText=""></RowIndicatorColumn>
+
+                                    <ExpandCollapseColumn FilterControlAltText=""></ExpandCollapseColumn>
+                                    <Columns>
+                                      <sqr8:GridHyperLinkColumn DataNavigateUrlFields="CustomerId" DataNavigateUrlFormatString="javascript:showEditCustomer({0})" DataTextField="Customer" DataTextFormatString="{0}" AllowSorting="False" HeaderText="Customer" SortExpression="Customer" UniqueName="Edit" FilterControlAltText="">
+
+                                      </sqr8:GridHyperLinkColumn>
+                                      <sqr8:GridBoundColumn DataField="Customer" HeaderText="Customer" SortExpression="Customer" Visible="False" UniqueName="Customer" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="ClaimId" HeaderText="Claim ID" SortExpression="ClaimId" UniqueName="ClaimId" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridHyperLinkColumn DataNavigateUrlFields="fldMasterIWfId" DataNavigateUrlFormatString="javascript:showAssignment({0})" DataTextField="RequestID" DataTextFormatString="{0}" AllowSorting="False" HeaderText="Assignment ID" SortExpression="RequestID" UniqueName="RequestID" DataType="System.Int64" FilterControlAltText=""></sqr8:GridHyperLinkColumn>
+                                      <sqr8:GridBoundColumn DataField="ClaimNumber" HeaderText="Claim #" SortExpression="ClaimNumber" UniqueName="ClaimNumber" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+
+                                      <sqr8:GridBoundColumn DataField="AssignmentType" HeaderText="Assignment Type" SortExpression="AssignmentType" UniqueName="AssignmentType" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="CurrentStatus" HeaderText="Current Status" SortExpression="CurrentStatus" Display="False" UniqueName="CurrentStatus" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridDateTimeColumn DataField="CreationDate" HeaderText="Creation Date" SortExpression="CreationDate" UniqueName="CreationDate" DataType="System.DateTime" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridDateTimeColumn>
+                                      <sqr8:GridDateTimeColumn DataField="ReceivedDate" HeaderText="Received Date" SortExpression="ReceivedDate" UniqueName="ReceivedDate" DataType="System.DateTime" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridDateTimeColumn>
+                                      <sqr8:GridBoundColumn DataField="Client" HeaderText="Client" SortExpression="Client" UniqueName="Client" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="CityStateZIP" HeaderText="City, State &amp; ZIP" SortExpression="CityStateZIP" UniqueName="CityStateZIP" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="HomePhone" HeaderText="Home Phone" SortExpression="HomePhone" UniqueName="HomePhone" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="WorkPhone" HeaderText="Work Phone" SortExpression="WorkPhone" UniqueName="WorkPhone" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="MobilePhone" HeaderText="Mobile Phone" SortExpression="MobilePhone" UniqueName="MobilePhone" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="Email" HeaderText="Email" SortExpression="Email" UniqueName="Email" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="AccountType" HeaderText="Account Type" SortExpression="AccountType" Display="False" UniqueName="AccountType" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+                                      <sqr8:GridBoundColumn DataField="CustomerId" HeaderText="CustomerId" SortExpression="CustomerId" Visible="false" UniqueName="CustomerId" FilterControlAltText="">
+                                        <ColumnValidationSettings>
+                                          <RequiredFieldValidator ForeColor=""></RequiredFieldValidator>
+                                        </ColumnValidationSettings>
+                                      </sqr8:GridBoundColumn>
+
+                                    </Columns>
+
+                                    <EditFormSettings>
+                                      <EditColumn FilterControlAltText=""></EditColumn>
+                                    </EditFormSettings>
+
+
+                                    <PagerStyle GoToPageButtonToolTip=""></PagerStyle>
+
+                                    <AutoGeneratedEditColumnSettings ButtonType="ImageButton"></AutoGeneratedEditColumnSettings>
+
+                                    <AutoGeneratedDeleteColumnSettings ButtonType="ImageButton"></AutoGeneratedDeleteColumnSettings>
+                                  </MasterTableView>
+
+                                  <PagerStyle GoToPageButtonToolTip=""></PagerStyle>
+
+                                  <SelectedItemStyle BackColor="Fuchsia" BorderColor="Purple" BorderWidth="1px" BorderStyle="Dashed"></SelectedItemStyle>
+
+                                  <FilterMenu EnableImageSprites="True"></FilterMenu>
+                                </sq8:Grid>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <sq:BoundControl runat="server" TargetControlID="USP_CustomerSearchGridView" ></sq:BoundControl>
+                  <!-- ======== Customer Search Result Table Grid Section End ======== -->
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        </ContentTemplate>
+      </asp:UpdatePanel>
+      <!-- ======== Customer Search Action Panel Section Start ======== --> 
+      <br>
+      <div class="row" style='display:<%={IIF({SQL:select dbo.ufn_GetUserType({rt.CurrentUser.UserId})} = "VENDOR","none","block")} %>'  __ds__id="136">
+        <div class="panel">
+          <div class="panel-body" style="padding-bottom:0px;">
+            <div class="sqf-row">
+              <div class="sqf-col-xs-12 sqf-col-md-12 sqf-control-group-v text-center" style="padding-top:0px;padding-bottom:5px;">
+                <!-- ======== Back To Queue Action Button Section Start ======== --> 
+                <sq8:SubmitButton runat="server" Text="Back To Queue" ID="BackToQueue" CssClass="customSubActionBtn" OnClientClicking="BackToQueue" BackColor="#FCB686" BorderColor="#FCB686" Visible='false'></sq8:SubmitButton>														
+                &nbsp;<sq8:CheckBox runat="server" Text="Checkbox" ID="chkBackToQueue" style="display:none;"></sq8:CheckBox>
+                <sq:BindableControl runat="server" TargetControlID="chkBackToQueue" DataField="chkBackToQueue"></sq:BindableControl>
+                <sq8:SubmitButton runat="server" Text="Submit"  ID="RealSubmitButton" CommandName="Save" style="display:none;"></sq8:SubmitButton>
+                <!-- ======== Back To Queue Action Button Section End ======== --> 
+
+                <!-- ======== Discard Action Button Section Start ======== --> 
+                <sq8:SubmitButton runat="server" Text="Discard"  ID="Discard" OnClientClicking="Discard" CssClass="customSubActionBtn" BackColor="#FCB686" BorderColor="#FCB686" Visible='<%$ sq:{IIF(TryElse(wf.Variables["ClaimSource"],"") = "Email", true, false)} %>'></sq8:SubmitButton>
+                &nbsp;<sq8:CheckBox runat="server" Text="Checkbox" ID="chkDiscard" style="display:none;"></sq8:CheckBox>
+                <sq:BindableControl runat="server" TargetControlID="chkDiscard" DataField="chkDiscard"></sq:BindableControl>
+                <!-- ======== Discard Action Button Section Start ======== --> 
+
+                <!-- ======== Create New Customer Action Button Section Start ======== --> 
+                <sq8:SubmitButton runat="server" CausesValidation="false" CssClass="customMainActionBtn" Text="Add New Customer"  ID="CreateNewCustomer" OnClientClicking="CreateNewCustomer"></sq8:SubmitButton>
+                &nbsp;<sq8:CheckBox runat="server" Text="Checkbox" ID="chkCreateNewCustomer" style="display:none;"></sq8:CheckBox>
+                <sq:BindableControl runat="server" TargetControlID="chkCreateNewCustomer" DataField="chkCreateNewCustomer"></sq:BindableControl>
+                <!-- ======== Create New Customer Action Button Section Start ======== -->
+
+                <!-- ======== Create New Claim Action Button Section Start ======== --> 
+                <sq8:SubmitButton runat="server" CausesValidation="false" CssClass="customResetBtn" Text="Add New Claim"  ID="btnCreateNewClaim" OnClientClicking="CreateNewClaim" Enabled="False" ></sq8:SubmitButton>
+                &nbsp;<sq8:CheckBox runat="server" Text="Checkbox" ID="chkCreateNewClaim" style="display:none;"></sq8:CheckBox>
+                <sq:BindableControl runat="server" TargetControlID="chkCreateNewClaim" DataField="chkCreateNewClaim"></sq:BindableControl>
+                <!-- ======== Create New Claim Action Button Section Start ======== --> 
+
+                <!-- ======== Add Assignment Action Button Section Start ======== --> 
+                <sq8:SubmitButton runat="server" CausesValidation="false" CssClass="customSubActionBtn" Text="Add New Assignment"  ID="btnCreateNewAssignment" OnClientClicking="CreateNewAssignment" Enabled="False" ></sq8:SubmitButton>
+                <sq8:CheckBox runat="server" Text="Checkbox" ID="chkCreateNewAssignment" style="display:none;"></sq8:CheckBox>
+                <sq:BindableControl runat="server" TargetControlID="chkCreateNewAssignment" DataField="chkCreateNewAssignment"></sq:BindableControl>
+                <!-- ======== Add Assignment Action Button Section Start ======== --> 
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ======== Customer Search Action Panel Section End ======== --> 
+
+
+
+
+
+
+      
+</ContentTemplate>
+</sq8:Form>
+  </div>
+  <!-- ======== Main Layout Section End ======== -->
+
+  <sq8:DataSource runat="server" ID="SearchDataSource" QueryName="ref:ns0/UACTSearchCustomerClaimParameters"></sq8:DataSource>
+  <sq:BoundControl runat="server" TargetControlID="Search"></sq:BoundControl>
+
+  <sqr8:RadWindow runat="server" ShowContentDuringLoad="false" RenderMode="Lightweight" ID="modalPopup" Width="1200px" Height="650px" Modal="true" CssClass="customRadWindow"
+                  Behaviors="Move, Close" OnClientClose="onModalClose" EnableViewState="false" DestroyOnClose="false" KeepInScreenBounds="true" CenterIfModal="true" VisibleStatusbar="false" Skin="Bootstrap">
+  </sqr8:RadWindow>
+</div>
+<!-- ======== HTML Section End ======== -->
+
+<!-- ======== Custom Style Section Start ======== -->
+<style>
+  .row{
+    height:10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .custom-panel-header
+  {
+    font-weight:bold;
+    font-size:16px;
+    color:#fff;
+    font-family: Arial;
+  }
+  /***** ========= Collapsed Panel Style Start ======== *****/
+  .panel-heading {
+    cursor: pointer;
+    /*background-color:#002e62;*/
+  }
+
+  .panel-heading:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';
+    /* essential for enabling glyphicon */
+    content: "\e114";
+    /* adjust as needed, taken from bootstrap.css */
+    float: right;
+    /* adjust as needed */
+    color: #fc5663 !important;
+    /* adjust as needed */
+    margin-top: -1.25em;
+  }
+
+  .panel-heading.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";
+    /* adjust as needed, taken from bootstrap.css */
+  }
+
+  .panel {
+    border-color: #eee !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    margin-bottom:0px !important;
+  }
+
+  .panel-heading {
+    background: #fff!important;
+    border-color: #fff !important;
+    color: #244970;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .10), 0 1px 2px 0 rgba(0, 0, 0, 0.15) !important;
+    border-left: 4px solid #1cadcd !important;
+  }
+
+  .panel-paddingLeft {
+    padding-left: 7px;
+  }
+
+  .panel-body
+  {
+    padding-top:7px !important;
+  }
+
+  .paddingBottom
+  {
+    padding-bottom: 0px !important;
+  }
+
+  /***** ========= Collapsed Panel Style End ======== *****/
+  label{
+    font-weight:normal !important;
+    font-size:15px !important;
+  }
+
+  .RadLabel
+  {
+    font-size:15px !important;
+    font-weight: normal !important;
+    color: #244970;
+    text-transform: uppercase;
+  }
+  .RadRadioButtonList_Sequence8 label
+  {
+    padding-left:10px !important;
+    cursor:pointer;
+  }
+
+  .customInput,
+  .RadComboBox_Sequence8,
+  .rcbInputCell,
+  .rcbArrowCell,
+  .riTextBox
+  {
+    color: #244970 !important;
+    background:transparent !important;
+    font-size: 14px !important;
+  }
+
+  .customCol
+  {
+    padding-top:0px !important;
+    margin-top:-.75em;
+  }
+
+  .RadComboBoxDropDown_Sequence8
+  {
+    background: #fff !important;
+  }
+
+  .customMainActionBtn
+  {
+    background: #1cadcd !important;
+    border: #1cadcd !important;
+    color: #fff !important;
+    line-height:1.5em !important;
+    font-size:14px !important;
+  }
+
+  .customResetBtn
+  {
+    background: #fc5663 !important;
+    border: #fc5663 !important;
+    line-height:1.5em !important;
+    font-size:14px !important;
+  }
+
+  .customSubActionBtn
+  {
+    background: #244970 !important;
+    border: #244970 !important;
+    color: #fff !important;
+    line-height:1.5em !important;
+    font-size:14px !important;
+  }
+
+  .customRadWindow
+  {
+    overflow:hidden !important;
+  }
+
+  .weTopBarLinksContainer td
+  {
+    display: none !important;
+  }
+
+</style>
+<!-- ======== Custom Style Section End ======== -->
