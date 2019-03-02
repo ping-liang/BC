@@ -61,6 +61,12 @@
           <xsd:element name="TermName" type="xsd:string" />
           <xsd:element name="TrxDate" type="xsd:date" />
           <xsd:element minOccurs="0" name="UnitSellingPrice" nillable="true" type="xsd:double" />
+          <xsd:element name="ENTITY_NAME" type="xsd:string" />
+          <xsd:element name="REVENUE_ACCOUNT" type="xsd:string" />
+          <xsd:element name="COST_CENTER" type="xsd:string" />
+          <xsd:element name="FUTURE1" type="xsd:string" />
+          <xsd:element name="FUTURE2" type="xsd:string" />
+          <xsd:element name="RECEIVABLE_ACCOUNT" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element name="Invoice">

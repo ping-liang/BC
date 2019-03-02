@@ -94,7 +94,7 @@
             <xsd:element name="AkritivESMId" type="xsd:string" />
             <xsd:element name="HeaderRecordId" type="xsd:string" />
             <xsd:element name="UniqueRequestId" type="xsd:string" />
-            <xsd:element name="RecordType" type="xsd:string" />
+            <xsd:element maxOccurs="unbounded" name="LineItemsRes" type="pnmc:LineItemRes" />
             <xsd:element name="Message" type="xsd:string" />
             <xsd:element name="Source" type="xsd:string" />
             <xsd:element name="AkritivCaseStatus" type="xsd:string" />
@@ -110,6 +110,16 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:complexType name="LineItemRes">
+        <xsd:sequence>
+          <xsd:element name="AkritivESMLineId" type="xsd:string" />
+          <xsd:element name="AkritivESMCostAllId" type="xsd:string" />
+          <xsd:element name="LineRecordId" type="xsd:string" />
+          <xsd:element name="CostAllRecordId" type="xsd:string" />
+          <xsd:element name="Message" type="xsd:string" />
+          <xsd:element name="SuccessStatus" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
     </xsd:schema>
     <xs:schema xmlns="http://xmlns.oracle.com/ics/tracking/ics_tracking_context.xsd" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/ics/tracking/ics_tracking_context.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="ics_tracking_context">

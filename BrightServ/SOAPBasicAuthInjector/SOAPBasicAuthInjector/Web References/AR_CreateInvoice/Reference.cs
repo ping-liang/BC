@@ -24,7 +24,7 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
     
     /// <remarks/>
     // CODEGEN: The optional WSDL extension element 'PolicyReference' from namespace 'http://schemas.xmlsoap.org/ws/2004/09/policy' was not handled.
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="InoviceData_InsertInvoice_REQUEST_binding", Namespace="urn:PNMSoftARInsertInvoiceData")]
@@ -124,7 +124,7 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -206,6 +206,18 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         private System.Nullable<double> unitSellingPriceField;
         
         private bool unitSellingPriceFieldSpecified;
+        
+        private string eNTITY_NAMEField;
+        
+        private string rEVENUE_ACCOUNTField;
+        
+        private string cOST_CENTERField;
+        
+        private string fUTURE1Field;
+        
+        private string fUTURE2Field;
+        
+        private string rECEIVABLE_ACCOUNTField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -607,10 +619,70 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
                 this.unitSellingPriceFieldSpecified = value;
             }
         }
+        
+        /// <remarks/>
+        public string ENTITY_NAME {
+            get {
+                return this.eNTITY_NAMEField;
+            }
+            set {
+                this.eNTITY_NAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string REVENUE_ACCOUNT {
+            get {
+                return this.rEVENUE_ACCOUNTField;
+            }
+            set {
+                this.rEVENUE_ACCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string COST_CENTER {
+            get {
+                return this.cOST_CENTERField;
+            }
+            set {
+                this.cOST_CENTERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FUTURE1 {
+            get {
+                return this.fUTURE1Field;
+            }
+            set {
+                this.fUTURE1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FUTURE2 {
+            get {
+                return this.fUTURE2Field;
+            }
+            set {
+                this.fUTURE2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RECEIVABLE_ACCOUNT {
+            get {
+                return this.rECEIVABLE_ACCOUNTField;
+            }
+            set {
+                this.rECEIVABLE_ACCOUNTField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -655,11 +727,11 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     public delegate void InsertInvoiceDataCompletedEventHandler(object sender, InsertInvoiceDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InsertInvoiceDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

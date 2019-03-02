@@ -24,7 +24,7 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
     
     /// <remarks/>
     // CODEGEN: The optional WSDL extension element 'PolicyReference' from namespace 'http://schemas.xmlsoap.org/ws/2004/09/policy' was not handled.
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="Create_Case_From_PNMSoft_Akritiv_REQUESTPortType_CreateCase_REQUEST_binding", Namespace="urn:http://www.genpacticspnm/createcase.com")]
@@ -76,14 +76,14 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:http://www.genpacticspnm/createcase.com/CreateCase", RequestElementName="CreateCaseRequest", RequestNamespace="http://www.genpacticspnmcc/XMLSchema.com", ResponseNamespace="http://www.genpacticspnmcc/XMLSchema.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("Status")]
-        public string CreateCase(Header Header, [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)] LineItem[] LineItems, out string AkritivESMId, out string HeaderRecordId, out string UniqueRequestId, out string RecordType, out string Message, out string Source, out string AkritivCaseStatus) {
+        public string CreateCase(Header Header, [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)] LineItem[] LineItems, out string AkritivESMId, out string HeaderRecordId, out string UniqueRequestId, [System.Xml.Serialization.XmlElementAttribute("LineItemsRes")] out LineItemRes[] LineItemsRes, out string Message, out string Source, out string AkritivCaseStatus) {
             object[] results = this.Invoke("CreateCase", new object[] {
                         Header,
                         LineItems});
             AkritivESMId = ((string)(results[1]));
             HeaderRecordId = ((string)(results[2]));
             UniqueRequestId = ((string)(results[3]));
-            RecordType = ((string)(results[4]));
+            LineItemsRes = ((LineItemRes[])(results[4]));
             Message = ((string)(results[5]));
             Source = ((string)(results[6]));
             AkritivCaseStatus = ((string)(results[7]));
@@ -132,7 +132,7 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -359,7 +359,88 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.genpacticspnmcc/XMLSchema.com")]
+    public partial class LineItemRes {
+        
+        private string akritivESMLineIdField;
+        
+        private string akritivESMCostAllIdField;
+        
+        private string lineRecordIdField;
+        
+        private string costAllRecordIdField;
+        
+        private string messageField;
+        
+        private string successStatusField;
+        
+        /// <remarks/>
+        public string AkritivESMLineId {
+            get {
+                return this.akritivESMLineIdField;
+            }
+            set {
+                this.akritivESMLineIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AkritivESMCostAllId {
+            get {
+                return this.akritivESMCostAllIdField;
+            }
+            set {
+                this.akritivESMCostAllIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LineRecordId {
+            get {
+                return this.lineRecordIdField;
+            }
+            set {
+                this.lineRecordIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CostAllRecordId {
+            get {
+                return this.costAllRecordIdField;
+            }
+            set {
+                this.costAllRecordIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SuccessStatus {
+            get {
+                return this.successStatusField;
+            }
+            set {
+                this.successStatusField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -428,7 +509,7 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -485,7 +566,7 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -542,11 +623,11 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     public delegate void CreateCaseCompletedEventHandler(object sender, CreateCaseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CreateCaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -591,10 +672,10 @@ namespace SOAPBasicAuthInjector.AP_CreateCase {
         }
         
         /// <remarks/>
-        public string RecordType {
+        public LineItemRes[] LineItemsRes {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[4]));
+                return ((LineItemRes[])(this.results[4]));
             }
         }
         

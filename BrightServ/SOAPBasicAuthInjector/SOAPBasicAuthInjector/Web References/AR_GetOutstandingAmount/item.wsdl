@@ -62,7 +62,7 @@
       </xsd:element>
       <xsd:complexType name="InvoicePaymentDetail">
         <xsd:sequence>
-          <xsd:element name="AmountReceiptID" type="xsd:integer" />
+          <xsd:element name="AmountReceiptID" type="xsd:string" />
           <xsd:element name="ApplyDate" type="xsd:date" />
           <xsd:element name="AmountApplied" type="xsd:double" />
           <xsd:element name="Status" type="xsd:string" />
