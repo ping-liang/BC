@@ -133,6 +133,10 @@ namespace SOAPBasicAuthInjector.AR_GetOutstandingAmount {
         
         private string oracleInvoiceNo1Field;
         
+        private string eNTITY_NAMEField;
+        
+        private string bATCH_SOURCE_NAMEField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("OracleInvoiceNo")]
         public string OracleInvoiceNo1 {
@@ -141,6 +145,26 @@ namespace SOAPBasicAuthInjector.AR_GetOutstandingAmount {
             }
             set {
                 this.oracleInvoiceNo1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ENTITY_NAME {
+            get {
+                return this.eNTITY_NAMEField;
+            }
+            set {
+                this.eNTITY_NAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BATCH_SOURCE_NAME {
+            get {
+                return this.bATCH_SOURCE_NAMEField;
+            }
+            set {
+                this.bATCH_SOURCE_NAMEField = value;
             }
         }
     }

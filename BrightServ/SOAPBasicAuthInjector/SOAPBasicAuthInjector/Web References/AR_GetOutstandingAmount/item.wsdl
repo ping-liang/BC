@@ -71,6 +71,8 @@
       <xsd:complexType name="OracleInvoiceNo">
         <xsd:sequence>
           <xsd:element name="OracleInvoiceNo" type="xsd:string" />
+          <xsd:element name="ENTITY_NAME" type="xsd:string" />
+          <xsd:element name="BATCH_SOURCE_NAME" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
     </xsd:schema>

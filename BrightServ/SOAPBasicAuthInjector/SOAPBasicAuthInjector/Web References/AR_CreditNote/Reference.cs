@@ -217,6 +217,30 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
         
         private string uomCodeField;
         
+        private string eNTITY_NAMEField;
+        
+        private string rEVENUE_ACCOUNTField;
+        
+        private string cOST_CENTERField;
+        
+        private string fUTURE1Field;
+        
+        private string fUTURE2Field;
+        
+        private string rECEIVABLE_ACCOUNTField;
+        
+        private string interfaceLineAttribute4Field;
+        
+        private string interfaceLineAttribute5Field;
+        
+        private string interfaceLineAttribute6Field;
+        
+        private string interfaceLineAttribute7Field;
+        
+        private string interfaceLineAttribute8Field;
+        
+        private string interfaceLineAttribute9Field;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AccountingRuleName {
@@ -667,6 +691,126 @@ namespace SOAPBasicAuthInjector.AR_CreditNote {
             }
             set {
                 this.uomCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ENTITY_NAME {
+            get {
+                return this.eNTITY_NAMEField;
+            }
+            set {
+                this.eNTITY_NAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string REVENUE_ACCOUNT {
+            get {
+                return this.rEVENUE_ACCOUNTField;
+            }
+            set {
+                this.rEVENUE_ACCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string COST_CENTER {
+            get {
+                return this.cOST_CENTERField;
+            }
+            set {
+                this.cOST_CENTERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FUTURE1 {
+            get {
+                return this.fUTURE1Field;
+            }
+            set {
+                this.fUTURE1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FUTURE2 {
+            get {
+                return this.fUTURE2Field;
+            }
+            set {
+                this.fUTURE2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RECEIVABLE_ACCOUNT {
+            get {
+                return this.rECEIVABLE_ACCOUNTField;
+            }
+            set {
+                this.rECEIVABLE_ACCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute4 {
+            get {
+                return this.interfaceLineAttribute4Field;
+            }
+            set {
+                this.interfaceLineAttribute4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute5 {
+            get {
+                return this.interfaceLineAttribute5Field;
+            }
+            set {
+                this.interfaceLineAttribute5Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute6 {
+            get {
+                return this.interfaceLineAttribute6Field;
+            }
+            set {
+                this.interfaceLineAttribute6Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute7 {
+            get {
+                return this.interfaceLineAttribute7Field;
+            }
+            set {
+                this.interfaceLineAttribute7Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute8 {
+            get {
+                return this.interfaceLineAttribute8Field;
+            }
+            set {
+                this.interfaceLineAttribute8Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute9 {
+            get {
+                return this.interfaceLineAttribute9Field;
+            }
+            set {
+                this.interfaceLineAttribute9Field = value;
             }
         }
     }

@@ -133,6 +133,10 @@ namespace SOAPBasicAuthInjector.AR_GetOracleInvoiceNumber {
         
         private string pNMInvoiceNoField;
         
+        private string eNTITY_NAMEField;
+        
+        private string bATCH_SOURCE_NAMEField;
+        
         /// <remarks/>
         public string PNMInvoiceNo {
             get {
@@ -140,6 +144,26 @@ namespace SOAPBasicAuthInjector.AR_GetOracleInvoiceNumber {
             }
             set {
                 this.pNMInvoiceNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ENTITY_NAME {
+            get {
+                return this.eNTITY_NAMEField;
+            }
+            set {
+                this.eNTITY_NAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BATCH_SOURCE_NAME {
+            get {
+                return this.bATCH_SOURCE_NAMEField;
+            }
+            set {
+                this.bATCH_SOURCE_NAMEField = value;
             }
         }
     }

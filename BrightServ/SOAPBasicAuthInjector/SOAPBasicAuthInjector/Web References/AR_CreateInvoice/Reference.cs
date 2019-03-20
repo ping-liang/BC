@@ -219,6 +219,18 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
         
         private string rECEIVABLE_ACCOUNTField;
         
+        private string interfaceLineAttribute4Field;
+        
+        private string interfaceLineAttribute5Field;
+        
+        private string interfaceLineAttribute6Field;
+        
+        private string interfaceLineAttribute7Field;
+        
+        private string interfaceLineAttribute8Field;
+        
+        private string interfaceLineAttribute9Field;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string AccountingRuleName {
@@ -677,6 +689,66 @@ namespace SOAPBasicAuthInjector.AR_CreateInvoice {
             }
             set {
                 this.rECEIVABLE_ACCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute4 {
+            get {
+                return this.interfaceLineAttribute4Field;
+            }
+            set {
+                this.interfaceLineAttribute4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute5 {
+            get {
+                return this.interfaceLineAttribute5Field;
+            }
+            set {
+                this.interfaceLineAttribute5Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute6 {
+            get {
+                return this.interfaceLineAttribute6Field;
+            }
+            set {
+                this.interfaceLineAttribute6Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute7 {
+            get {
+                return this.interfaceLineAttribute7Field;
+            }
+            set {
+                this.interfaceLineAttribute7Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute8 {
+            get {
+                return this.interfaceLineAttribute8Field;
+            }
+            set {
+                this.interfaceLineAttribute8Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InterfaceLineAttribute9 {
+            get {
+                return this.interfaceLineAttribute9Field;
+            }
+            set {
+                this.interfaceLineAttribute9Field = value;
             }
         }
     }
